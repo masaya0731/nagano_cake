@@ -1,7 +1,25 @@
-<h1>トップページ</h1>
 <div class="container">
   <div class="row">
-    <div class="mx-auto col-3"></div>
-    <div class="offset-1 col-8"></div>
+    <div class="col-xs-3 mt-5">
+      <div class="list-group mb-5 shadow-sm rounded">
+        <sapn class="list-group-item">ジャンル検索</sapn>
+      </div>
+    </div>
+    <div class="offset-2 col-7 mt-5">
+      <div id="theTarget">
+        <div style="position: relative">
+          <%= image_tag "cake3.jpeg" , size: "600x400"%>
+        </div>
+        <div style="opacity: 0.5; font-family: cursive;  font-size: 20px; color: black; position: absolute; top: 150px; left: 40px;">ようこそ、NaganoCakeへ!<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には、会員登録が必要になります。
+        </div>
+      </div>
+      <h3 class="mt-3">新着商品</h3>
+    </div>
+  </div>
+  <div class="h5 text-right">
+    <%= link_to "全ての商品を見る>", public_items_path,class:"link" %>
   </div>
 </div>
