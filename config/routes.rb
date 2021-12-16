@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :customers, only: [:show, :edit, :update]
-    get "/customers/unsubscribe", to: "customers#unsubscribe"
-    patch "/customers/withdraw", to: "customers#withdraw"
+    get "/customers/:id/unsubscribe", to: "customers#unsubscribe", as: 'unsubscribe'
+    patch "/customers/:id/withdraw", to: "customers#withdraw", as: 'withdraw'
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show]
     get "/orders/check", to: "orders#check"
