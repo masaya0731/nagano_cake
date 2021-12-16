@@ -21,25 +21,24 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <% if customer_signed_in? %>
-          <li><%= link_to 'マイページ', public_customer_path(current_customer.id), class:"fas fa-home nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1"%></li>
-          <li><%= link_to "商品一覧", public_items_path, class:"fas fa-birthday-cake nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
-          <li><%= link_to 'カート一覧', public_cart_items_path, class:"far fa-shopping-cart nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
-          <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-light　font-weight-bold text-dark border rounded mb-1" %></li>
+          <% if customer_signed_in? %>
+            <li><%= link_to 'マイページ', public_customer_path(current_customer.id), class:"fas fa-home nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1"%></li>
+            <li><%= link_to "商品一覧", public_items_path, class:"fas fa-birthday-cake nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
+            <li><%= link_to 'カート一覧', public_cart_items_path, class:"far fa-shopping-cart nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
+            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-light　font-weight-bold text-dark border rounded mb-1" %></li>
+          <% elsif admin_signed_in?%>
+            <li><%= link_to "商品一覧", admin_items_path, class: "nav-link fas fa-cheese text-dark border rounded mr-3 mb-1" %></li>
+            <li><%= link_to "会員一覧", admin_customers_path, class: "nav-link fas fa-users text-dark text-dark border rounded mr-3 mb-1" %></li>
+            <li><%= link_to "注文履歴一覧", admin_root_path, class: "nav-link fas fa-file-signature text-dark border rounded mr-3 mb-1" %></li>
+            <li><%= link_to "ジャンル一覧", admin_genre_path, class: "nav-link fas fa-pie text-dark border rounded mr-3 mb-1" %></li>
+            <li ><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link fas fa-sign-out-alt text-dark border rounded mb-1" %></li>
+          <% else %>
+            <li><%= link_to 'About', about_path, class:"fas fa-store nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
+            <li><%= link_to "商品一覧", public_items_path, class:"fas fa-birthday-cake nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
+            <li><%= link_to "新規登録", new_customer_registration_path, class:"fas fa-user-plus nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
+            <li><%= link_to "ログイン", new_customer_session_path, class:"fas fa-sign-in-alt nav-link text-light font-weight-bold text-dark border rounded mb-1" %></li>
+          <% end %>
         </ul>
-        <% elsif admin_signed_in?%>
-          <li><%= link_to "商品一覧", admin_items_path, class: "nav-link fas fa-cheese text-dark border rounded mr-3 mb-1" %></li>
-          <li><%= link_to "会員一覧", admin_customers_path, class: "nav-link fas fa-users text-dark text-dark border rounded mr-3 mb-1" %></li>
-          <li><%= link_to "注文履歴一覧", admin_root_path, class: "nav-link fas fa-file-signature text-dark border rounded mr-3 mb-1" %></li>
-          <li><%= link_to "ジャンル一覧", admin_genre_path, class: "nav-link fas fa-pie text-dark border rounded mr-3 mb-1" %></li>
-          <li ><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link fas fa-sign-out-alt text-dark border rounded mb-1" %></li>
-        <% else %>
-          <li><%= link_to 'About', about_path, class:"fas fa-store nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
-          <li><%= link_to "商品一覧", public_items_path, class:"fas fa-birthday-cake nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
-          <li><%= link_to "新規登録", new_customer_registration_path, class:"fas fa-user-plus nav-link text-light font-weight-bold text-dark border rounded mr-3 mb-1" %></li>
-          <li><%= link_to "ログイン", new_customer_session_path, class:"fas fa-sign-in-alt nav-link text-light font-weight-bold text-dark border rounded mb-1" %></li>
-        </ul>
-        <% end %>
       </div>
     </div>
   </nav>
