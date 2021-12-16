@@ -1,0 +1,47 @@
+<div class = "container">
+  <div class = "mx-auto  row  pt-5">
+    <!--ジャンル検索欄（リンクなどはつけていない）-->
+    <div class = "col-2">
+      <table class = "table table-bordered">
+        <thead>
+          <tr>
+            <th>
+              ジャンル検索
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <p>ケーキ</p>
+              <p>焼き菓子</p>
+              <p>プリン</p>
+              <p>キャンディ</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--商品詳細-->
+    <div class = "col-10">
+      <% if !(@item.blank?) %>
+        <div class = "row">
+          <div class = "col-5">
+            <%= attachment_image_tag @item, :image, :fill, 200, 300, resize:"200×300", class:"show-img" %>
+          </div>
+          <div class = "col-7">
+            <h3><%= @item.name %></h3>
+            <p class = "mb-5"><%= @item.introduction %></p>
+            <p class = "h4"><%= "￥#{(@item.price_without_tax * @tax_rate).round}（税込）" %> </p>
+            <!--カードに追加フォーム-->
+          　<%= form_with model: @new_cart_item, url:public_cart_items_path do |f| %>
+              <%= f.hidden_field :item_id, value: @item.id %>
+              <%= f.select :count, *[1..9], include_blank: "個数選択" %>
+              <%= f.submit 'カートに入れる', class: "btn btn-success ml-4" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
