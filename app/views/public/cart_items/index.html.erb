@@ -1,0 +1,33 @@
+<div class = "container">
+  <div class = "row">
+    <h3 class = "heading border border-dark bg-light">ショッピングカート</h3>
+  </div>
+  <div class = "mx-auto row">
+    <% if @cart_items.blank? %>
+      <p class = "text-center">カートには何も入っていません</p>
+      <% else %>
+        <table class = "table table-bordered">
+          <thead>
+            <tr>
+              <th>商品名</th>
+              <th>単価（税込）</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td><%=cart_item.item.name %></td>
+                <td><%=cart_item.item.price_without_tax * 1.1 %></td>
+                <td><%=cart_item.count %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    <% end %>
+  </div>
+</div>
