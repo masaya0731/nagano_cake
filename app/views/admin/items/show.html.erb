@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-1 col-11 mt-5 h4">商品詳細</div>
+  </div>
+  <div class="row mt-5">
+    <%= attachment_image_tag(@item, :image, size: "300x250", format: "jpeg") %>
+    <div class="col-md-5 offset-1">
+      <table class="table table-borderless">
+        <tr>
+          <td>商品名</td>
+          <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= @item.introduction %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td><%= @item.genre.name %></td>
+        </tr>
+        <tr>
+          <td>税込価格(税抜価格)</td>
+          <td><%= @item.with_tax_price %> (<%= @item.price_without_tax%>)</td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td>
+            <% if @item.is_sold == true %>
+              <div class="text-success font-weight-bold"><%= "販売中" %></div>
+            <% else %>
+              <div class="text-danger font-weight-bold"><%= "販売停止中" %></div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <div class="row pl-4">
+        <td><%= link_to '編集する', edit_admin_item_path(@item), class: "btn btn-success center-block" %>
+      </div>
+    </div>
+  </div>
+</div>
+
