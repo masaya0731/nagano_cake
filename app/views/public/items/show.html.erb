@@ -4,7 +4,7 @@
     <div class = "col-2">
       <table class = "table table-bordered">
         <thead>
-          <tr>
+          <tr class="table-info">
             <th>
               ジャンル検索
             </th>
@@ -30,14 +30,23 @@
             <%= attachment_image_tag @item, :image, :fill, 200, 300, resize:"200×300", class:"show-img" %>
           </div>
           <div class = "col-7">
-            <h3><%= @item.name %></h3>
+            <h3>
+              <%= @item.name %>
+              <% if @item.is_sold == true %>
+                <span class = "h6 bg-info text-light px-3 py-1 border border-dark rounded-pill font-weight-bold">販売中</span>
+              <% else %>
+                <span class = "h6 bg-danger text-light px-3 py-1 border border-dark rounded-pill font-weight-bold">売り切れ</span>
+              <% end %>
+            </h3>
             <p class = "mb-5"><%= @item.introduction %></p>
-            <p class = "h4"><%= "￥#{(@item.price_without_tax * @tax_rate).round}（税込）" %> </p>
-            <!--カードに追加フォーム-->
-          　<%= form_with model: @new_cart_item, url:public_cart_items_path do |f| %>
-              <%= f.hidden_field :item_id, value: @item.id %>
-              <%= f.select :count, *[1..9], include_blank: "個数選択" %>
-              <%= f.submit 'カートに入れる', class: "btn btn-success ml-4" %>
+            <p class = "h4"><%= "￥#{@item.with_tax_price.to_s(:delimited)}（税込）" %> </p>
+            <!--カードに追加フォーム（販売中かつログインしなければ表示されない）-->
+            <% if (customer_signed_in?) && (@item.is_sold == true)%>
+            　<%= form_with model: @new_cart_item, url:public_cart_items_path do |f| %>
+                <%= f.hidden_field :item_id, value: @item.id %>
+                <%= f.select :count, *[1..9], include_blank: "個数選択" %>
+                <%= f.submit 'カートに入れる', class: "btn btn-success ml-4" %>
+              <% end %>
             <% end %>
           </div>
         </div>
