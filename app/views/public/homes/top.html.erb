@@ -1,11 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-3 mt-5">
-      <div class="list-group mb-5 shadow-sm rounded">
+    <div class="col-2 mt-5">
+      <div class="list-group">
         <sapn class="list-group-item">ジャンル検索</sapn>
+        <% @genres.each do |genre| %>
+          <div class="list-group-item">
+            <%= link_to genre.name %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="offset-2 col-7 mt-5">
+    <div class="offset-1 col-7 mt-5">
       <div id="theTarget">
         <div style="position: relative">
           <%= image_tag "cake3.jpeg" , size: "600x400"%>

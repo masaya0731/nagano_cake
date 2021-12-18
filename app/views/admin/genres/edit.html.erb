@@ -1,0 +1,14 @@
+<div class='container'>
+  <div class="row">
+    <div class="col-11">
+      <h4 class="offset-1 my-5">ジャンル編集</h4>
+      <%= form_with model: @genre, url: "/admin/genres/#{@genre.id}", local: true do |f| %>
+        <div class="field row form-group mb-5">
+          <%= f.label :"ジャンル名", class: "col-3" %>
+          <%= f.text_field :name, autofocus: true, class: "col-4 form-control" %>
+          <%= f.submit '変更を保存', class: "btn btn-success offset-1" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
