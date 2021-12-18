@@ -1,24 +1,15 @@
 <div class = "container">
   <div class = "mx-auto  row  pt-5">
-    <!--ジャンル検索欄（リンクなどはつけていない）-->
-    <div class = "col-2">
-      <table class = "table table-bordered">
-        <thead>
-          <tr class="table-info">
-            <th>ジャンル検索</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <p>ケーキ</p>
-              <p>焼き菓子</p>
-              <p>プリン</p>
-              <p>キャンディ</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <!--ジャンル検索欄）-->
+    <div class="col-2 mt-5">
+      <div class="list-group">
+        <sapn class="list-group-item">ジャンル検索</sapn>
+        <% @genres.each do |genre| %>
+          <div class="list-group-item">
+            <%= link_to genre.name %>
+          </div>
+        <% end %>
+      </div>
     </div>
     <!--商品一覧-->
     <div class = "col-10">
