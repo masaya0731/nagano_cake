@@ -30,7 +30,7 @@ class Public::DeliveryAddressesController < ApplicationController
   def destroy
     @delivery_address = DeliveryAddress.find(params[:id])
     @delivery_address.destroy
-    redirect_to public_delivery_addresses_path, notice: "選択された配送先の消去が完了しました。"
+    redirect_to public_delivery_addresses_path, notice: "選択した配送先の消去が完了しました。"
   end
 
 
