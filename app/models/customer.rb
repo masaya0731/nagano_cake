@@ -21,4 +21,14 @@ class Customer < ApplicationRecord
     ## is_deletedがfalseならtrueを返すようにしている
     super && (is_deleted == false)
   end
+
+  # 会員フルネーム
+  def full_name
+    self.last_name + " " + self.first_name
+  end
+
+  # 会員カナフルネーム
+  def kana_full_name
+    self.last_name_kana + " " + self.first_name_kana
+  end
 end
