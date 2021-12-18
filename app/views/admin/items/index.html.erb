@@ -1,0 +1,16 @@
+　　<div class = "text-right"><%= link_to '＋商品新規登録', new_admin_item_path %></div>
+      <table class="table">
+    <% @items.each do |item| %>
+        <%= item.id %>
+          <%= link_to admin_item_path(item.id) do %>
+            <%= item.name %>
+          <% end %>
+        <%= item.price_without_tax %>
+        <%= item.genre.name %>
+          <% if item.is_sold == true %>
+            <div class = text-success><%= "販売中" %></div>
+          <% else %>
+            <div class = text-danger><%= "販売停止中" %></div>
+          <% end %>
+    <% end %>
+</div>
