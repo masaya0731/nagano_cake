@@ -1,33 +1,87 @@
 <div class = "container">
   <div class = "row">
-    <h3 class = "heading border border-dark bg-light">ショッピングカート</h3>
-  </div>
-  <div class = "mx-auto row">
-    <% if @cart_items.blank? %>
-      <p class = "text-center">カートには何も入っていません</p>
+    <div class = "col-6">
+      <h3 class = "heading border border-dark bg-light d-inline-block">ショッピングカート</h3>
+    </div>
+    <div class = "col-6">
+      <% if @my_cart_items.blank? %>
+        <!--何も表示しない-->
       <% else %>
-        <table class = "table table-bordered">
-          <thead>
-            <tr>
-              <th>商品名</th>
-              <th>単価（税込）</th>
-              <th>数量</th>
-              <th>小計</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @cart_items.each do |cart_item| %>
-              <tr>
-                <td><%=cart_item.item.name %></td>
-                <td><%=cart_item.item.price_without_tax * 1.1 %></td>
-                <td><%=cart_item.count %></td>
-                <td></td>
-                <td></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-    <% end %>
+        <%= link_to public_destroy_cart_items_path, method: :delete, data: {confirm: "カートを全て空にしますか？"} do %>
+          <button type="button" class="btn btn-danger float-right">カートを空にする</button>
+        <% end %>
+      <% end %>
+    </div>
   </div>
+  <!--カート一覧表-->
+  <% if @my_cart_items.blank? %>
+    <div class = "mx-auto row">
+      <p class = "text-center">カートには何も入っていません</p>
+    </div>
+  <% else %>
+    <div class = "mx-auto row">
+      <table class = "table table-bordered">
+        <thead>
+          <tr class="table-secondary">
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @my_cart_items.each do |cart_item| %>
+            <tr>
+              <td>
+                <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, resize:"50×50" %>
+                <%= cart_item.item.name %>
+              </td>
+              <td>
+                <%= "￥#{cart_item.item.with_tax_price.to_s(:delimited)}" %>
+              </td>
+              <td>
+                <%= form_with model: cart_item, url: public_cart_item_path(cart_item) do |f| %>
+                  <%= f.select :count, *[1..9] %>
+                  <%= f.submit '変更', class: "btn btn-success" %>
+                <% end %>
+              </td>
+              <td>
+                <%= "￥#{cart_item.subtotal_price.to_s(:delimited)}" %>
+              </td>
+              <td>
+                <%= link_to public_cart_item_path(cart_item), method: :delete, data: {confirm: "カートから削除しますか？"} do %>
+                  <button type="button" class="btn btn-danger">削除する</button>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <!--買い物を続けるボタン　と　合計金額-->
+    <div class = "mx-auto row">
+      <div class = "mx-auto col-8">
+        <%= link_to public_items_path do %>
+          <button type="button" class="btn btn-info btn-lg">買い物を続ける</button>
+        <% end %>
+      </div>
+      <div class = "mx-auto col-4">
+        <table class = "table table-bordered">
+          <tr>
+            <th class="table-secondary">合計金額</th>
+            <th><%= "￥#{CartItem.calc_total_price(@my_cart_items).to_s(:delimited)}" %></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!--情報入力画面ボタン-->
+    <div class = "mx-auto row">
+      <div class = "mx-auto col-6 text-center">
+        <%= link_to new_public_order_path do %>
+          <button type="button" class="btn btn-success btn-lg">情報入力画面に進む</button>
+        <% end %>
+      </div>
+    </div>
+<% end %>
 </div>

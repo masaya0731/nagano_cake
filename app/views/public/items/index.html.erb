@@ -4,7 +4,7 @@
     <div class = "col-2">
       <table class = "table table-bordered">
         <thead>
-          <tr>
+          <tr class="table-info">
             <th>ジャンル検索</th>
           </tr>
         </thead>
@@ -22,7 +22,7 @@
     </div>
     <!--商品一覧-->
     <div class = "col-10">
-      <h3 class = "heading">商品一覧<span>（<%= "#{@items.count}件" %>）</span></h3>
+      <h3 class = "heading">商品一覧<span>（<%= "#{@all_items.count}件" %>）</span></h3>
       <div class = "items-list">
         <% if !(@items.blank?) %>
           <% @items.each do |item| %>
@@ -36,6 +36,7 @@
           <% end %>
         <% end %>
       </div>
+      <%= paginate @items %>
     </div>
   </div>
 </div>

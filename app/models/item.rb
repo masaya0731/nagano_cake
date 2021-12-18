@@ -6,6 +6,11 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :introduction, presence: true
-  validates :image_id, presence: true
+  validates :image, presence: true
   validates :price_without_tax, presence: true
+
+  # 消費税を求めるメソッド
+  def with_tax_price
+      (price_without_tax * 1.1).floor
+  end
 end

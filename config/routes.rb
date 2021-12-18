@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get "/orders/check", to: "orders#check"
     get "/orders/finish", to: "orders#finish"
     resources :cart_items, only: [:index, :create, :update, :destroy]
-    delete "/cart_items", to: "cart_items#destroy_all"
+    delete "/cart_items", to: "cart_items#destroy_all", as: 'destroy_cart_items'
     resources :delivery_addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
