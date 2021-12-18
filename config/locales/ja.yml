@@ -1,0 +1,21 @@
+  # enumの記述
+  ja:
+    enums:
+      order:
+        payment_method:
+          credit_card: "クレジットカード"
+          transfer: "銀行振込"
+
+        order_status:
+          waiting_for_deposit: "入金待ち"
+          payment_confirmation: "入金確認"
+          in_production: "製作中"
+          preparing_for_delivery: "配送準備中"
+          delivered: "配送済み"
+
+      order_detail:
+        making_status:
+          cannot_be_started: "着手不可"
+          waiting_for_production: "制作待ち"
+          in_production: "制作中"
+          production_completed: "制作完了"
