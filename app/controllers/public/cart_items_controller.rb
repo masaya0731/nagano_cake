@@ -1,7 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
     @my_cart_items = CartItem.where(customer_id: current_customer.id)
-    # @cart_items = CartItem.where(customer_id: params[:id])
   end
 
   def create
