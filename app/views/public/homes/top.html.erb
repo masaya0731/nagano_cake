@@ -1,3 +1,16 @@
+<div id="splash">
+  <div id="splash_logo">
+    <div class="fadeUp" style="font-family: cursive; font-size: 50px;">Welcome to</div>
+    <div class="fadeUp" style="font-family: cursive; font-size: 50px;">NaganoCake</div>
+    <div class="fadeUp" style="font-family: cursive; font-size: 50px;">Click !</div>
+  </div>
+</div>
+<script>
+  $(window).on('click',function(){
+    $("#splash").delay(500).fadeOut('slow');
+    $("#splash_logo").delay(300).fadeOut('slow');
+  });
+</script>
 <div class="container">
   <div class="row">
     <div class="col-2 mt-5">
@@ -5,7 +18,7 @@
         <sapn class="list-group-item">ジャンル検索</sapn>
         <% @genres.each do |genre| %>
           <div class="list-group-item">
-            <%= link_to genre.name %>
+            <%= link_to  genre.name %>
           </div>
         <% end %>
       </div>

@@ -1,18 +1,19 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-12">
+    <div class="fluid" style="position: relative;"></div>
+    <div class="col-12" style="position: absolute; top: 80px;">
       <h4 class="my-5">管理者ログイン</h4>
         <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
         <div class="field form-group row mt-5">
-          <%= f.label :メールアドレス, class: "col-3 offset-2" %>
-          <%= f.text_field :email, class: "form-control col-5" %>
+          <%= f.label :メールアドレス, class: "col-3" %>
+          <%= f.text_field :email, class: "form-control col-4" %>
         </div>
         <div class="field form-group row">
-          <%= f.label :パスワード, class: "col-3 offset-2" %>
-          <%= f.password_field :password, class: "form-control col-5" %>
+          <%= f.label :パスワード, class: "col-3" %>
+          <%= f.password_field :password, class: "form-control col-4" %>
         </div>
         <div class="mt-5">
-          <%= f.submit "ログイン", class: 'btn btn-primary col-2 offset-5' %>
+          <%= f.submit "ログイン", class: 'btn btn-primary col-2 offset-4' %>
         </div>
       <% end %>
       </div>

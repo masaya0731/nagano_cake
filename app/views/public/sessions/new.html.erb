@@ -1,8 +1,10 @@
 <div class='container'>
-  <h4 class="my-4">ログイン</h4>
+  <div class="col-12" style="position: relative;"></div>
+  <div class="fluid3" style="position: absolute; top: 80px;"></div>
+  <h4 class="my-4" style="z-index: 10; position: relative;">ログイン</h4>
   <div class='mx-auto row'>
     <div class="col-12">
-      <h5 class = "border-bottom border-dark pb-2 mb-3">会員の方はこちらからログイン</h5>
+      <h5 class = "pb-2 mb-3">会員の方はこちらからログイン</h5>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <!-- メールアドレス入力欄 -->
         <div class="field mb-3">
@@ -30,7 +32,7 @@
   </div>
   <div class = "mx-auto row">
     <div class = "col-12">
-      <h5 class = "border-bottom border-dark pb-2 mb-3">会員登録がお済みでない方</h5>
+      <h5 class = "pb-2 mb-3">会員登録がお済みでない方</h5>
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
        <p><%= link_to "こちら", new_registration_path(resource_name) %> から新規登録を行ってください</p>
       <% end %>
