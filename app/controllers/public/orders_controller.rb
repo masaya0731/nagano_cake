@@ -20,6 +20,7 @@ class Public::OrdersController < ApplicationController
       cart_items.each do |cart|
         # order_item にも一緒にデータを保存
         order_detail = OrderDetail.new
+        order_detail.count = cart.count
         order_detail.item_id = cart.item_id
         order_detail.order_id = @order.id
         # 購入が完了したらカート情報は削除するのでこちらに保存
@@ -39,13 +40,13 @@ class Public::OrdersController < ApplicationController
 
   # 注文履歴一覧画面
   def index
-    # @orders = current_customer.orders
+    @orders = current_customer.orders
   end
 
   # 注文履歴詳細画面
   def show
-    # @order = current_customer.orders.find(params[:id])
-    # @order_details = @order.order_details
+    @order = current_customer.orders.find(params[:id])
+    @order_details = @order.order_details
     # @order_details = OrderDetail.where(order_id: params[:id])
   end
 

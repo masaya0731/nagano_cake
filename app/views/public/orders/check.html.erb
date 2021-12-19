@@ -21,9 +21,9 @@
                 <%= cart_item.item.name %>
               </td>
               <!-- カートに入れた商品の値段と個数を表示する -->
-              <td><%= (cart_item.item.price_without_tax * 1.1).floor %></td>
+              <td>¥<%= (cart_item.item.price_without_tax * 1.1).floor %></td>
               <td><%= cart_item.count %></td>
-              <td><%= (cart_item.item.price_without_tax * 1.1).floor * cart_item.count %></td>
+              <td>¥<%= (cart_item.item.price_without_tax * 1.1).floor * cart_item.count %></td>
               <% @cart_item_total_price += cart_item.subtotal_price %>
             </tr>
           <% end %>
@@ -43,11 +43,11 @@
           </tr>
           <tr>
             <td>商品合計</td>
-            <td>¥<%= @cart_item_total_price %></td>
+            <td><%= "¥#{ @cart_item_total_price.to_s(:delimited) }" %></td>
           </tr>
           <tr>
             <td>請求金額</td>
-            <td>¥<%= @cart_item_total_price + 800 %></td>
+            <td><%= "¥#{ (@cart_item_total_price + 800).to_s(:delimited) }" %></td>
           </tr>
         </tbody>
       </table>
