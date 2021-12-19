@@ -16,6 +16,6 @@
       order_detail:
         making_status:
           cannot_be_started: "着手不可"
-          waiting_for_production: "制作待ち"
-          in_production: "制作中"
-          production_completed: "制作完了"
+          waiting_for_production: "製作待ち"
+          in_production: "製作中"
+          production_completed: "製作完了"
