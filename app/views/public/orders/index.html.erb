@@ -1,0 +1,48 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h2>注文履歴一覧</h2>
+    </div>
+    <div class="col-md-12">
+      <table class="table table-bordered border border-dark">
+        <thead>
+          <th class="info border border-dark table-active">注文日</th>
+          <th class="info border border-dark table-active">配送先</th>
+          <th class="info border border-dark table-active">注文商品</th>
+          <th class="info border border-dark table-active">支払い金額</th>
+          <th class="info border border-dark table-active">ステータス</th>
+          <th class="info border border-dark table-active">注文詳細</th>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <!-- 注文日(年/月/日)  -->
+              <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
+                <!-- 配送先郵便番号  -->
+                〒<%= order.post_code %><br>
+                <!-- 配送先住所  -->
+                <%= order.address %><br>
+                <!-- 配送先宛名  -->
+                <%= order.name %>
+              </td>
+              <td>
+                <!-- 注文商品  --><!-- 商品名  -->
+                <% order.order_details.each do |order_detail| %>
+                  <%= order_detail.item.name %><br>
+                <% end %>
+              </td>
+              <!-- 請求金額  -->
+              <td><%= (order.total_payment + 800).to_s(:delimited)%>円</td>
+              <!-- 注文ステータス  -->
+              <td><%= order.order_status_i18n %></td>
+              <!-- 注文履歴詳細へ  -->
+              <td><%= link_to "表示する", public_order_path(order), class:"btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
