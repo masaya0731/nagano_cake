@@ -1,30 +1,28 @@
 <div class="container">
    <div class="row">
-      <div class="col-3 offset-1 pl-5 pb-2">
+      <div class="mx-auto offset-1 pb-2">
         <h3>注文履歴一覧</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8 mx-auto">
+      <div class=" mx-auto">
         <table class="table">
-          <thead>
-            <tr class="table table-secondary">
-              <th scope="col">購入日時</th>
-              <th scope="col">購入者</th>
-              <th scope="col">注文個数</th>
-              <th scope="col">注文ステータス</th>
+          <thead class="table table-secondary">
+            <tr>
+              <th>購入日時</th>
+              <th>購入者</th>
+              <th>注文個数</th>
+              <th>注文ステータス</th>
             </tr>
           </thead>
           <tbody>
+           <% @orders.each do |order| %>
             <tr>
-               <% @orders.each do |order| %>
                 <td>
-                  <%= link_to order.create_at, admin_order_path(orders.id) %>
+                   <%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order.id) %>
                 </td>
                 <td><%= order.name %></td>
-                <td><%= order.count %></td>
-                <td><%= order.status %></td>
-              <% end %>
+                <td><%= order.order_details.inject(0) { |sum, order_detail| sum + order_detail.count } %></td>
+                <td><%= order.order_status_i18n %></td>
+            </tr>
+           <% end %>
               <%= paginate @orders %>
             </tr>
           </tbody>
