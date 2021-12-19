@@ -13,6 +13,10 @@
       <% end %>
     </div>
   </div>
+  <!--カートの変更についての変更メッセージ-->
+  <div class = "flash_message">
+    <%= flash[:notice] %>
+  </div>
   <!--カート一覧表-->
   <% if @my_cart_items.blank? %>
     <div class = "mx-auto row">
@@ -42,7 +46,11 @@
               </td>
               <td class="align-middle">
                 <%= form_with model: cart_item, url: public_cart_item_path(cart_item) do |f| %>
-                  <%= f.select :count, *[1..9] %>
+                  <% if cart_item.count <= 10 %>
+                    <%= f.select :count, *[1..10] %>
+                  <% else %>
+                    <%= f.select :count, *[1..cart_item.count] %>
+                  <% end %>
                   <%= f.submit '変更', class: "btn btn-success" %>
                 <% end %>
               </td>
@@ -70,7 +78,7 @@
         <table class = "table table-bordered">
           <tr>
             <th class="table-secondary">合計金額</th>
-            <th><%= "￥#{CartItem.calc_total_price(@my_cart_items).to_s(:delimited)}" %></th>
+            <th>￥<%= @my_cart_items.inject(0){|sum, cart| sum + cart.subtotal_price}.to_s(:delimited) %></th>
           </tr>
         </table>
       </div>
