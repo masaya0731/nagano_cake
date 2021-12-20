@@ -1,9 +1,31 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-6">
-      <h3 class = "heading border border-dark bg-light d-inline-block">ショッピングカート</h3>
+    <div class = "mx-auto col-11">
+      <h3 class = "my-2 py-2 d-inline-block border-bottom border-dark text-center" style = 'font-weight: 600; width: 100%;' >ショッピングカート</h3>
     </div>
-    <div class = "col-6">
+  </div>
+  <!--注文ステップ-->
+  <div class = "row">
+    <div class = "mx-auto col-11">
+       <ul class="mx-auto text-center arrow">
+        <li class = "bg-info border border-dark border-5 rounded-3 font-weight-bold text-light">
+          <i class="fas fa-shopping-cart"></i> カートに入れる
+        </li>
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          注文情報の入力
+        </li>
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          注文情報の確認
+        </li>
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          <i class="fas fa-truck"></i> 注文完了！
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--カートを空にするボタン-->
+  <div class = "row">
+    <div class = "col-6 offset-6 mb-2">
       <% if @my_cart_items.blank? %>
         <!--何も表示しない-->
       <% else %>
@@ -14,8 +36,8 @@
     </div>
   </div>
   <!--カートの変更についての変更メッセージ-->
-  <div class = "flash_message">
-    <%= flash[:notice] %>
+  <div class = "flash_message text-success">
+    <%= flash[:success] %>
   </div>
   <!--カート一覧表-->
   <% if @my_cart_items.blank? %>
