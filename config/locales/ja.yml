@@ -10,8 +10,8 @@
           waiting_for_deposit: "入金待ち"
           payment_confirmation: "入金確認"
           in_production: "製作中"
-          preparing_for_delivery: "配送準備中"
-          delivered: "配送済み"
+          preparing_for_delivery: "発送準備中"
+          delivered: "発送済み"
 
       order_detail:
         making_status:

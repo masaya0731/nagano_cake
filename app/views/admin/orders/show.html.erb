@@ -1,15 +1,15 @@
 <div class="container py-3">
-  <div class="row">
-    <div class="col-md-3 offset-1 py-2">
-      <h3>注文履歴詳細</h3>
+ <div class="row pb-4">
+    <div class="col-md-2 offset-1 p-3 table-secondary text-center">
+      <h5 class="d-inline-flex pt-2 bd-highlight">注文履歴詳細</h5>
     </div>
   </div>
   <div class="row">
     <div class="col-8 pb-3">
-      <table class="table table-borderless">
+        <table class="table table-borderless">
           <tr>
             <th>購入者</th>
-            <td><%= @order.name %></td>
+            <td class="text-decoration-underline"><u><%= link_to  @customer.last_name + @customer.first_name, admin_customer_path(@customer.id) , class: "text-dark" %></u></td>
           </tr>
           <tr>
             <th>購入日</th>
@@ -28,13 +28,15 @@
             <td><%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]}%>
             <span class= "pl-5"><%= f.submit "更新" , class: "btn btn-success" %></span></td>
            <% end %>
-      </table>
+        </table>
+       <div class="text-right text-success"><%= flash[:success] %></div>
+       <div class="text-right text-danger"><%= flash[:danger] %></div>
     </div>
   </div>
   <div class="row">
     <div class="col-8">
       <table class="table">
-        <thead>
+        <thead class="table-secondary">
           <tr>
             <th>商品名</th>
             <th>単価（税込）</th>
@@ -61,7 +63,7 @@
         </tbody>
       </table>
     </div>
-    <div class="col-md-4 align-self-end">
+    <div class="col-md-4 pt-3 align-self-end　border border-ridge text-center">
       <table class="table table-borderless">
         <tbody>
           <tr>
@@ -81,4 +83,4 @@
     </div>
   </div>
  </div>
-</div>
+ </div>
