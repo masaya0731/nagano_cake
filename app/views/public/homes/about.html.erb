@@ -46,8 +46,30 @@
         		TextTypingAnime();
         });
       </script>
-    <div class="mx-auto">
-      <%= image_tag "cake_about.jpeg", size: "900x500" %>
+      <div id="container">
+        <div id="theTarget">
+          <div class="about-image1 about-image"></div>
+          <div class="about-image2 about-image"></div>
+          <div class="about-image3 about-image"></div>
+          <div class="about-image4 about-image"></div>
+          <div class="about-image5 about-image"></div>
+        </div>
+      </div>
+      <script>
+        $(document).ready(function () {
+          $("#theTarget").skippr({
+            transition : 'fade',
+            speed : 1000,
+            easing : 'easeOutQuart',
+            navType : 'block',
+            childrenElementType : 'div',
+            autoPlay : true,
+            autoPlayDuration : 2700,
+            keyboardOnAlways : true,
+            hidePrevious : false
+          });
+        });
+      </script>
     </div>
   </div>
 </div>
