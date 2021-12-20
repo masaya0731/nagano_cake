@@ -13,8 +13,11 @@ class Public::CustomersController < ApplicationController
   #会員情報更新
   def update
     @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
-    redirect_to public_customer_path
+    if @customer.update(customer_params)
+      redirect_to public_customer_path
+    else
+      render :edit
+    end
   end
 
   #会員退会画面を表示

@@ -1,7 +1,8 @@
-<h3>配送先編集</h3>
+<h3><u>配送先編集</u></h3>
 
 <!------------ 配送先登録部分 ------------>
 <%= form_with model: @delivery_address, url: public_delivery_address_path, local: true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="row form-group pt-3">
         <div class="col-md-3"><%= f.label :郵便番号 %></div>
         <div class="col-md-4"><%= f.text_field :post_code, autofocus: true, placeholder:"0000000", class:"form-control" %></div>

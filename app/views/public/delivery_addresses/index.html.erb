@@ -1,7 +1,13 @@
-<h3>配送先登録/一覧</h3>
+
+<div class = "flash_message">
+    <%= flash[:notice] %>
+</div>
+
+<h3><u>配送先登録/一覧</u></h3>
 
 <!------------ 配送先登録部分 ------------>
 <%= form_with model: @delivery_address, url: public_delivery_addresses_path, local: true do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="row form-group pt-3">
         <div class="col-md-3"><%= f.label :郵便番号 %></div>
         <div class="col-md-4"><%= f.text_field :post_code, autofocus: true, placeholder:"0000000", class:"form-control" %></div>
@@ -40,7 +46,7 @@
                 <td><%= d.name %></td>
                 <td class="text-center">
                     <%= link_to "編集する", edit_public_delivery_address_path(d.id), class:"btn btn-primary btn-sm mr-auto md-1 mr-5" %>
-                    <%= link_to "削除する", public_delivery_address_path(d.id), method: :delete, class:"btn btn-danger btn-sm md-1 ml-5" %>
+                    <%= link_to "削除する", public_delivery_address_path(d.id), method: :delete, class:"btn btn-danger btn-sm md-1 ml-5", data: {confirm: "本当に消去しますか？"} %>
                 </td>
             </tr>
         <% end %>
