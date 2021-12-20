@@ -30,11 +30,13 @@ class Public::SessionsController < Devise::SessionsController
   def customer_state
     ## 【処理内容1】入力されたemailからアカウントを1件取得
     @customer = Customer.find_by(email:params[:customer][:email])
+    ## アカウントを取得できなかったら終了
+    # return if !@customer
     ## 【処理内容2】取得したアカウントのパスワードと入力されたパスワードが一致しているかを判別
     if @customer.valid_password?(params[:customer][:password])
       ## 【処理内容3】退会していた場合の処理
       if @customer.is_deleted == true
-        flash[:notice] = "退会済みアカウントです。再度新規登録を行なってください。"
+        flash[:notice] = "退会済みアカウントではログイン出来ません。再度新規登録を行なってください。"
         redirect_to new_customer_registration_path
       end
     end

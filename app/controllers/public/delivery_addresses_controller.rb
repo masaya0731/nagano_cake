@@ -15,22 +15,32 @@ class Public::DeliveryAddressesController < ApplicationController
   def create
     @delivery_address = DeliveryAddress.new(delivery_address_params)
     @delivery_address.customer_id = current_customer.id
-    @delivery_address.save
-    redirect_to public_delivery_addresses_path, notice: "新規配送先を登録しました。"
+    if @delivery_address.save
+      flash[:notice] = "新規配送先を登録しました。"
+      redirect_to public_delivery_addresses_path
+    else
+      @delivery_addresses = current_customer.delivery_addresses
+      render :index
+    end
   end
 
   # 配送先情報更新
   def update
     @delivery_address = DeliveryAddress.find(params[:id])
-    @delivery_address.update(delivery_address_params)
-    redirect_to public_delivery_addresses_path, notice: "配送先情報を更新しました。"
+    if @delivery_address.update(delivery_address_params)
+      flash[:notice] = "配送先情報を更新しました。"
+      redirect_to public_delivery_addresses_path
+    else
+      render :edit
+    end
   end
 
   # 配送先削除
   def destroy
     @delivery_address = DeliveryAddress.find(params[:id])
     @delivery_address.destroy
-    redirect_to public_delivery_addresses_path, notice: "選択した配送先の消去が完了しました。"
+    flash[:notice] = "選択した配送先の消去が完了しました。"
+    redirect_to public_delivery_addresses_path
   end
 
 

@@ -21,9 +21,9 @@
                 <%= cart_item.item.name %>
               </td>
               <!-- カートに入れた商品の値段と個数を表示する -->
-              <td>¥<%= (cart_item.item.price_without_tax * 1.1).floor %></td>
+              <td>¥<%= ((cart_item.item.price_without_tax * 1.1).floor).to_s(:delimited) %></td>
               <td><%= cart_item.count %></td>
-              <td>¥<%= (cart_item.item.price_without_tax * 1.1).floor * cart_item.count %></td>
+              <td>¥<%= ((cart_item.item.price_without_tax * 1.1).floor * cart_item.count).to_s(:delimited) %></td>
               <% @cart_item_total_price += cart_item.subtotal_price %>
             </tr>
           <% end %>
@@ -81,7 +81,7 @@
             <%= f.hidden_field :total_payment, value: @cart_item_total_price %>
             <%= f.hidden_field :payment_method, value: @order.payment_method %>
             <!-- 注文内容を確定させる -->
-            <%= f.submit "注文を確定する" %>
+            <%= f.submit "注文を確定する", class:"btn btn-primary ml-2"%>
           <% end %>
         </div>
       </div>

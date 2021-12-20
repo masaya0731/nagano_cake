@@ -34,13 +34,14 @@ class Public::OrdersController < ApplicationController
       redirect_to public_orders_finish_path
     else
       @order = Order.new(order_params)
-      render :new
+      flash[:notice] = "配送先が選択されていません。再度ご確認ください。"
+      redirect_to new_public_order_path
     end
   end
 
   # 注文履歴一覧画面
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.all.reverse_order
   end
 
   # 注文履歴詳細画面

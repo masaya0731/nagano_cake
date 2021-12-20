@@ -1,8 +1,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <h2>注文情報入力</h2>
+    <div class="col-md-6">
+      <div class = "flash_message">
+        <%= flash[:notice] %>
+      </div>
+      <h2><u>注文情報入力</u></h2>
     </div>
   </div>
     <div class="col-md-8 offset-md-1">
@@ -52,8 +55,10 @@
             <%= f.label :宛名 %><br>
             <%= f.text_field :full_name %>
           </div>
+        </div>
+        <div class="text-center mx-auto">
           <!-- 注文詳細画面へ進む -->
-          <%= f.submit "確認画面に進む" %>
+          <%= f.submit "確認画面に進む", class:"btn btn-primary btn-lg" %>
         </div>
       <% end %>
     </div>
