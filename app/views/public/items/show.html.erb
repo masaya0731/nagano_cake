@@ -1,7 +1,7 @@
 <div class = "container">
-  <div class = "mx-auto  row  pt-5">
+  <div class = "mx-auto  row  pt-3">
     <!--ジャンル検索欄（リンクなどはつけていない）-->
-    <div class="col-2 mt-5">
+    <div class="col-2">
       <div class="list-group">
         <sapn class="list-group-item">ジャンル検索</sapn>
         <% @genres.each do |genre| %>
@@ -16,18 +16,16 @@
       <% if !(@item.blank?) %>
         <div class = "row">
           <div class = "col-7">
-            <%= attachment_image_tag @item, :image, :fill, 450, 450, resize:"450×450", class:"show-img" %>
+            <%= attachment_image_tag @item, :image, :fill, 450, 450, resize:"450×450", class:"show-img w-100" %>
           </div>
           <div class = "col-5">
-            <h4>
-              <%= @item.name %>
-              <% if @item.is_sold == true %>
-                <span class = "h6 bg-info text-light px-3 py-1 border border-dark rounded-pill font-weight-bold">販売中</span>
-              <% else %>
-                <span class = "h6 bg-danger text-light px-3 py-1 border border-dark rounded-pill font-weight-bold">売り切れ</span>
-              <% end %>
-            </h4>
+            <h4><%= @item.name %></h4>
             <p class = "mb-5"><%= @item.introduction %></p>
+            <% if @item.is_sold == true %>
+                <p class = "h6 d-inline-block bg-info text-light px-3 py-1 border border-dark rounded-pill font-weight-bold">販売中</p>
+              <% else %>
+                <p class = "h6 d-inline-block bg-danger text-light px-3 py-1 border border-dark rounded-pill font-weight-bold">売り切れ</p>
+            <% end %>
             <p class = "h4"><%= "￥#{@item.with_tax_price.to_s(:delimited)}（税込）" %> </p>
             <!--カードに追加フォーム（販売中かつログインしなければ表示されない）-->
             <% if (customer_signed_in?) && (@item.is_sold == true)%>

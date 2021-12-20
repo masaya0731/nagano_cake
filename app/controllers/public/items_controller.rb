@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
   def index
     @all_items = Item.all
     @genres = Genre.all
-    @items = Item.page(params[:page]).per(12).reverse_order
+    @items = Item.page(params[:page]).per(8).reverse_order
   end
 
   def show
