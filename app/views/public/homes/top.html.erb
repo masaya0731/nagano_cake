@@ -12,6 +12,7 @@
   });
 </script>
 <div class="container">
+  <div class="flash_message"><%= flash[:notice] %></div>
   <div class="row">
     <div class="col-2 mt-5">
       <div class="list-group">
@@ -23,21 +24,36 @@
         <% end %>
       </div>
     </div>
-    <div class="offset-1 col-7 mt-5">
-      <div id="theTarget">
-        <div style="position: relative">
-          <%= image_tag "cake3.jpeg" , size: "600x400"%>
-        </div>
-        <div style="opacity: 0.5; font-family: cursive;  font-size: 20px; color: black; position: absolute; top: 150px; left: 40px;">ようこそ、NaganoCakeへ!<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には、会員登録が必要になります。
+    <div class="col-8 offset-1">
+      <div class="mt-5">
+        <div class="col-7 mt-5">
+          <div id="theTarget">
+            <div style="position: relative">
+              <%= image_tag "cake3.jpeg" , size: "600x400"%>
+            </div>
+            <div style="opacity: 0.5; font-family: cursive;  font-size: 20px; color: black; position: absolute; top: 150px; left: 40px;">ようこそ、NaganoCakeへ!<br>
+              このサイトは、ケーキ販売のECサイトになります。<br>
+              会員でない方も商品の閲覧はできますが、<br>
+              購入には、会員登録が必要になります。
+            </div>
+          </div>
         </div>
       </div>
-      <h3 class="mt-3">新着商品</h3>
+      <h4 class="mt-3 ml-3 ribbon1"><strong>新着商品</strong></h4>
+      <div style="display: flex;">
+        <% @items.each do |item| %>
+          <div class="mt-3">
+            <%= link_to public_item_path(item) do %>
+              <%= attachment_image_tag(item, :image, size: "200x200", fallback: "no_image.jpg") %><br>
+            <% end %>
+            <%= item.name %><br>
+            <%= item.price_without_tax %>円
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="h5 text-right">
-    <%= link_to "全ての商品を見る>", public_items_path,class:"link" %>
-  </div>
+</div>
+<div class="h5 text-right mr-5 items-all-text btn_design">
+  <strong class="button-text"><%= link_to "全ての商品を見る＞", public_items_path, class: "text-white" %></strong>
 </div>

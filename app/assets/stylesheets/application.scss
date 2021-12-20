@@ -170,6 +170,69 @@ header {
   }
 }
 
+.ribbon1 {
+  display: inline-block;
+  position: relative;
+  height: 50px;/*リボンの高さ*/
+  line-height: 50px;/*リボンの高さ*/
+  text-align: center;
+  padding: 0 50px;/*横の大きさ*/
+  font-size: 18px;/*文字の大きさ*/
+  background: #f57a78;/*塗りつぶし色*/
+  color: #fff;/*文字色*/
+  box-sizing: border-box;
+}
+
+.ribbon1:before, .ribbon1:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.ribbon1:before {
+  top: 0;
+  left: 0;
+  border-width: 25px 0px 25px 15px;
+  border-color: transparent transparent transparent #fff;
+  border-style: solid;
+}
+
+.ribbon1:after {
+  top: 0;
+  right: 0;
+  border-width: 25px 15px 25px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+}
+
+.btn_design {
+    font-size: 20px;
+    width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px 15px;
+    background-color: #f57a78;
+    color: white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.btn_design:hover {
+    background-color:  #f57a78;
+    color:  #f57a78;
+    border: 2px solid  #f57a78;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
 //アバウトページ
 .TextTyping span {
 	display: none;
@@ -184,6 +247,30 @@ header {
 	from{opacity:0}
 	to{opacity:1}
 }
+
+
+  #container {
+    height: 500px;
+    width: 900px;
+    margin: 0 auto;
+  }
+
+  .about-image1 {
+    background-image: url(about-cake.jpg);
+  }
+  .about-image2 {
+    background-image: url(about-cake2.jpg);
+  }
+  .about-image3 {
+    background-image: url(about-cake3.jpg);
+  }
+  .about-image4 {
+    background-image: url(about-cake4.jpg);
+  }
+  .about-image5 {
+    background-image: url(about-cake5.jpg);
+  }
+
 //ヘッダー
 .navbar-nav li a{
 	position: relative;
@@ -211,3 +298,4 @@ header {
 .navbar-nav li :hover::after {
     transform: scale(1, 1);
 }
+
