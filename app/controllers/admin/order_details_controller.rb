@@ -1,4 +1,10 @@
 class Admin::OrderDetailsController < ApplicationController
+  def show
+    @customer = Customer.find(params[:id])
+    @order = Order.find_by(id: @customer.id)
+    @orders = @customer.orders.page(params[:page]).reverse_order
+  end
+
   def update
      order_detail = OrderDetail.find(order_detail_params[:id])
       if order_detail.update(order_detail_params)

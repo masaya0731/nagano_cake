@@ -1,5 +1,5 @@
  <div class="container">
-    <div class="row pb-3">
+    <div class="row p-3">
       <div  class="col-2 offset-1 table-secondary text-center">
         <h3 class="d-inline-flex px-2 pt-2 bd-highlight ">会員一覧</h3>
       </div>
@@ -10,12 +10,13 @@
           <thead>
             <tr class="table-secondary">
               <th>会員ID</th>
-              <th class="text-decoration-underline pr-2"><u>氏名</u></th>
+              <th>氏名</th>
               <th>メールアドレス</th>
               <th>ステータス</th>
             </tr>
           </thead>
           <tbody>
+            <!--会員一覧の表示-->
             <% @customers.each do |customer| %>
               <tr>
                 <td><%= customer.id %></td>

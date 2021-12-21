@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// paginationのレイアウト記述
 .pagination>li>a {
   border: none;
   color: #696969;
@@ -16,6 +17,21 @@
   border-radius: 15px;
 }
 
+// 角を丸くする
 .border-ridge {
   border: 10px ridge #DDDDDD;
+}
+
+
+// ordersの詳細画面のレイアウト
+.gradient{
+    // カラーの選択
+    background: linear-gradient(270deg, #aaffd5 0%, #d5ffea 25%, #fff4ff 51%, #ffd5ff	100%);
+    // カーソル合わせた時に色の変化
+    background-size: 200% auto;
+}
+
+// 要素の上にマウスのポインタを要素の上に置いたときに実行される処理。
+.gradient:hover {
+    background-position: 99% 50%
 }
