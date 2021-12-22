@@ -1,4 +1,8 @@
 class Public::OrdersController < ApplicationController
+  # 顧客としてログインしていないと、自動的にログイン画面に遷移
+  before_action :authenticate_customer!
+  # カートの中身に何も入れずに注文情報入力画面・注文情報確認画面に行ったり・注文（createアクション）をしようとした場合、カート一覧画面に戻す
+  before_action :cart_item_check, only: [:new, :create, :check]
 
   # 注文情報入力画面
   def new
@@ -89,6 +93,16 @@ class Public::OrdersController < ApplicationController
   end
 
   private
+  # カートに商品が入っているかを判別
+  def cart_item_check
+    my_cart_items = CartItem.where(customer_id: current_customer.id)
+    if my_cart_items.blank?
+      # views/public/cart_items/index.html.erbに "flash[:danger]"の記述があり、そこで表示させる
+      flash[:danger] = "カートに商品を入れてください"
+      redirect_to public_cart_items_path
+    end
+  end
+
   def order_params
     params.require(:order).permit(:customer_id, :post_code, :address, :name, :delivery_cost, :total_payment, :payment_method, :order_status)
   end

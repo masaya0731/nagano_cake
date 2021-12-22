@@ -23,14 +23,7 @@
   <div class="row">
     <!-- 管理者側でジャンルを追加するとここに表示される -->
     <div class="col-2 mt-5">
-      <div class="list-group">
-        <sapn class="list-group-item">ジャンル検索</sapn>
-        <% @genres.each do |genre| %>
-          <div class="list-group-item">
-            <%= link_to  genre.name %>
-          </div>
-        <% end %>
-      </div>
+      <%= render 'public/items/genre_search_table', genres: @genres %>
     </div>
     <div class="col-8 offset-1">
       <div class="mt-5">

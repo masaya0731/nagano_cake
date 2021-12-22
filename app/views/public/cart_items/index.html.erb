@@ -5,24 +5,7 @@
     </div>
   </div>
   <!--注文ステップ-->
-  <div class = "row">
-    <div class = "mx-auto col-11">
-       <ul class="mx-auto text-center arrow">
-        <li class = "bg-info border border-dark border-5 rounded-3 font-weight-bold text-light">
-          <i class="fas fa-shopping-cart"></i> カートに入れる
-        </li>
-        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
-          注文情報の入力
-        </li>
-        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
-          注文情報の確認
-        </li>
-        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
-          <i class="fas fa-truck"></i> 注文完了！
-        </li>
-      </ul>
-    </div>
-  </div>
+  <%= render 'public/cart_items/order_process' %>
   <!--カートを空にするボタン-->
   <div class = "row">
     <div class = "col-6 offset-6 mb-2">
@@ -35,9 +18,13 @@
       <% end %>
     </div>
   </div>
-  <!--カートの変更についての変更メッセージ-->
-  <div class = "flash_message text-success">
-    <%= flash[:success] %>
+  <!--カートについてのフラッシュメッセージ-->
+  <div class = "flash_message">
+    <!--sucessはカートの中身変更や削除をしたときのメッセージ-->
+    <p class ="text-success"><%= flash[:success] %></p>
+    <!--dangerはカートに何も入れずに注文情報入力以降の画面に進もうとしたら出る、カートに同じ商品を20個以上入れようとしたらメッセージ-->
+    <!--controllers/public/orders_controller.rb にリダイレクトと表示させるメソッドがある-->
+    <p class ="text-danger"><%= flash[:danger] %></p>
   </div>
   <!--カート一覧表-->
   <% if @my_cart_items.blank? %>
@@ -60,19 +47,15 @@
           <% @my_cart_items.each do |cart_item| %>
             <tr>
               <td class="align-middle">
-                <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, resize:"50×50" %>
-                <%= cart_item.item.name %>
+                  <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, resize:"50×50", :size => '50×50' %>
+                  <%= link_to cart_item.item.name, public_item_path(cart_item.item_id), class: "text-dark" %>
               </td>
               <td class="align-middle">
                 <%= "￥#{cart_item.item.with_tax_price.to_s(:delimited)}" %>
               </td>
               <td class="align-middle">
                 <%= form_with model: cart_item, url: public_cart_item_path(cart_item) do |f| %>
-                  <% if cart_item.count <= 10 %>
-                    <%= f.select :count, *[1..10] %>
-                  <% else %>
-                    <%= f.select :count, *[1..cart_item.count] %>
-                  <% end %>
+                  <%= f.select :count, *[1..20] %>
                   <%= f.submit '変更', class: "btn btn-success" %>
                 <% end %>
               </td>

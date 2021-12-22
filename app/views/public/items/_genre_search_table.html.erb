@@ -1,0 +1,8 @@
+<div class="list-group">
+  <div class="list-group-item bg_skew_dot"><strong>ジャンル検索</strong></div>
+  <% genres.each do |genre| %>
+    <div class="list-group-item">
+      <%= link_to genre.name, public_items_genre_search_path(genre) %>
+    </div>
+  <% end %>
+</div>

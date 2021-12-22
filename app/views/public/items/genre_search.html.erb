@@ -3,11 +3,13 @@
     <!--ジャンル検索欄-->
     <div class="col-2">
       <%= render 'public/items/genre_search_table', genres: @genres %>
+      <!--すべての商品一覧へのリンク-->
+      <%= link_to ">>全ての商品一覧へ", public_items_path, class: "d-block mt-4" %>
     </div>
     <!--商品一覧-->
     <div class = "col-10">
       <h3 class = "m-2 py-2" style = 'background: linear-gradient(to right, #fff 0%, #ffd6ff 30%, #ffd6ff 70%, #fff 100%);  font-weight: 600; width: 100%;' >
-        商品一覧<span class = "h5">（<%= "#{@all_items.count}件" %>）</span>
+        <%= @genre_searched.name %>一覧<span class = "h5">（<%= "#{@all_items_searched.count}件" %>）</span>
       </h3>
       <div class = "items-list d-flex flex-wrap w-100 mb-3">
         <% if !(@items.blank?) %>

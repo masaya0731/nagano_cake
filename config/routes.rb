@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get "/customers/:id/unsubscribe", to: "customers#unsubscribe", as: 'unsubscribe'
     patch "/customers/:id/withdraw", to: "customers#withdraw", as: 'withdraw'
     resources :items, only: [:index, :show]
+    get "/items/genre_search/:id", to: "items#genre_search",as: 'items_genre_search'
     post "/orders/check", to: "orders#check"
     get "/orders/finish", to: "orders#finish"
     resources :orders, only: [:new, :create, :index, :show]

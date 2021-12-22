@@ -299,3 +299,24 @@ header {
     transform: scale(1, 1);
 }
 
+// ジャンル検索窓--------------------------------
+// ドット斜め
+.bg_skew_dot{
+  background-color: #ffdbed;
+  background-image:
+    radial-gradient(#fff 25%, transparent 20%),
+    radial-gradient(#fff 25%, transparent 20%);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+
+
+// 商品詳細画面--------------------------------
+// 縦ボーダー背景
+.bg_border{
+  background-color: #ffdbed;
+  background-image:
+   linear-gradient(-90deg, #ffeddb 50%, transparent 50%);
+  background-size: 34px 14px;
+}

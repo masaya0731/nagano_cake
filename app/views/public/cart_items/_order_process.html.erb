@@ -1,0 +1,117 @@
+<% if request.url.include?('/public/cart_items') %>
+  <!--現在のurlがカート一覧の時-->
+  <div class = "row">
+    <div class = "mx-auto col-11">
+      <ul class="mx-auto text-center arrow">
+        <!--「カートに入れる」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to public_cart_items_path, class: "font-weight-bold text-light" do %>
+            <i class="fas fa-shopping-cart"></i> カートに入れる
+          <% end %>
+        </li>
+        <!--「注文情報の入力」は灰色-->
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          注文情報の入力
+        </li>
+        <!--「注文情報の確認」は灰色-->
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          注文情報の確認
+        </li>
+        <!--「注文完了！」は灰色-->
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          <i class="fas fa-truck"></i> 注文完了！
+        </li>
+      </ul>
+    </div>
+  </div>
+<% elsif request.url.include?('/public/orders/new') %>
+  <!--現在のurlが情報入力画面の時-->
+  <div class = "row">
+    <div class = "mx-auto col-11">
+      <ul class="mx-auto text-center arrow">
+        <!--「カートに入れる」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to public_cart_items_path, class: "font-weight-bold text-light" do %>
+            <i class="fas fa-shopping-cart"></i> カートに入れる
+          <% end %>
+        </li>
+        <!--「注文情報の入力」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to new_public_order_path, class: "font-weight-bold text-light" do %>
+            注文情報の入力
+          <% end %>
+        </li>
+        <!--「注文情報の確認」は灰色-->
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          注文情報の確認
+        </li>
+        <!--「注文完了！」は灰色-->
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          <i class="fas fa-truck"></i> 注文完了！
+        </li>
+      </ul>
+    </div>
+  </div>
+<% elsif request.url.include?('/public/orders/check') %>
+  <!--現在のurlが注文確認の時-->
+  <div class = "row">
+    <div class = "mx-auto col-11">
+       <ul class="mx-auto text-center arrow">
+        <!--「カートに入れる」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to public_cart_items_path, class: "font-weight-bold text-light" do %>
+            <i class="fas fa-shopping-cart"></i> カートに入れる
+          <% end %>
+        </li>
+        <!--「注文情報の入力」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to new_public_order_path, class: "font-weight-bold text-light" do %>
+            注文情報の入力
+          <% end %>
+        </li>
+        <!--「注文情報の確認」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to public_orders_check_path, class: "font-weight-bold text-light" do %>
+            注文情報の確認
+          <% end %>
+        </li>
+        <!--「注文完了！」は灰色-->
+        <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
+          <i class="fas fa-truck"></i> 注文完了！
+        </li>
+      </ul>
+    </div>
+  </div>
+<% elsif request.url.include?('/public/orders/finish') %>
+  <!--現在のurlが注文完了の時-->
+  <div class = "row">
+    <div class = "mx-auto col-11">
+       <ul class="mx-auto text-center arrow">
+        <!--「カートに入れる」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to public_cart_items_path, class: "font-weight-bold text-light" do %>
+            <i class="fas fa-shopping-cart"></i> カートに入れる
+          <% end %>
+        </li>
+        <!--「注文情報の入力」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to new_public_order_path, class: "font-weight-bold text-light" do %>
+            注文情報の入力
+          <% end %>
+        </li>
+        <!--「注文情報の確認」は水色+リンク付き-->
+        <li class = "bg-info border border-dark border-5 rounded-3">
+          <%= link_to public_orders_check_path, class: "font-weight-bold text-light" do %>
+            注文情報の確認
+          <% end %>
+        </li>
+        <!--「注文完了！」は水色-->
+          <li class = "bg-info border border-dark border-5 rounded-3 font-weight-bold text-light">
+             <i class="fas fa-truck"></i> 注文完了！
+          </li>
+      </ul>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
