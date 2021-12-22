@@ -50,9 +50,9 @@
             <% @order_details.each do |order_detail| %>
               <tr>
                 <td><%= order_detail.item.name %></td>
-                <td><%= order_detail.item.with_tax_price %></td>
+                <td><%= (order_detail.item.with_tax_price).to_s(:delimited) %></td>
                 <td><%= order_detail.count %></td>
-                <td><%= order_detail.subtotal_price %></td>
+                <td><%= (order_detail.subtotal_price).to_s(:delimited) %></td>
                 <td>
                   <%= form_with model: order_detail, url: admin_order_detail_path, method: :patch, local: true do |f| %>
                     <%= f.hidden_field :id, value: order_detail.id %>
@@ -70,7 +70,7 @@
         <tbody>
           <tr>
             <th>合計金額</th>
-            <td><%= OrderDetail.calc_total_price(@order_details) %>円</td>
+            <td><%= (OrderDetail.calc_total_price(@order_details)).to_s(:delimited) %>円</td>
           </tr>
           <tr>
             <th>送料</th>
@@ -78,7 +78,7 @@
           </tr>
           <tr>
             <th>請求金額合計</th>
-            <th class="text-decoration-underline"><u><%= OrderDetail.calc_total_price(@order_details) + @order.delivery_cost %>円</u></th>
+            <th><%= (OrderDetail.calc_total_price(@order_details) + @order.delivery_cost).to_s(:delimited) %>円</th>
           </tr>
         </tbody>
       </table>

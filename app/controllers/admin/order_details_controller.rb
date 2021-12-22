@@ -1,9 +1,5 @@
 class Admin::OrderDetailsController < ApplicationController
-  def show
-    @customer = Customer.find(params[:id])
-    @order = Order.find_by(id: @customer.id)
-    @orders = @customer.orders.page(params[:page]).reverse_order
-  end
+   before_action :authenticate_admin!
 
   def update
      order_detail = OrderDetail.find(order_detail_params[:id])

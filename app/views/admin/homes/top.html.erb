@@ -22,7 +22,7 @@
                   <u><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order.id), class: "text-dark"%></u>
                 </td>
                 <td class="text-decoration-underline" >
-                  <u><%= link_to order.customer.full_name, admin_order_detail_path(order.customer.id), class: "text-dark" %></td></u>
+                  <u><%= link_to order.customer.full_name, admin_customer_orders_path(order.customer.id), class: "text-dark" %></td></u>
                 <td><%= order.order_details.inject(0) { |sum, order_detail| sum + order_detail.count } %></td>
                 <td><%= order.order_status_i18n %></td>
             </tr>
