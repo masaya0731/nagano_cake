@@ -38,7 +38,7 @@ class Public::OrdersController < ApplicationController
       redirect_to public_orders_finish_path
     else
       @order = Order.new(order_params)
-      flash[:notice] = "配送先が選択されていません。再度ご確認ください。"
+      flash[:danger] = "配送先が正しく記入されていません。再度ご確認ください。"
       redirect_to new_public_order_path
     end
   end

@@ -20,7 +20,7 @@
           <tr>
             <td>
               <!-- カートに入れた商品の画像と名前を表示する -->
-              <%= attachment_image_tag cart_item.item, :image, :size => '50×50', fallback: "no_image.jpeg" %>
+              <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, resize:"50×50", :size => '50×50' %>
               <%= cart_item.item.name %>
             </td>
             <!-- カートに入れた商品の値段と個数を表示する -->
@@ -48,7 +48,7 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col-md-6 m-0">
+    <div class="col-md-8 m-0">
       <table class="table table-bordered table-hover">
         <tbody>
           <tr>
