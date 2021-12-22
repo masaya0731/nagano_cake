@@ -14,6 +14,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
+      flash[:success] = "会員情報を更新しました。"
       redirect_to public_customer_path
     else
       render :edit
@@ -31,9 +32,8 @@ class Public::CustomersController < ApplicationController
     ## is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @customer.update(is_deleted: true)
     reset_session
-    flash[:notice] = "退会処理を実行しました" ## 該当viewファイルへ<%= notice %>を
+    flash[:danger] = "退会しました。再度購入希望の方は、新規会員登録からやり直して下さい。" ## 該当viewファイルへ<%= notice %>を
     redirect_to root_path
-
   end
 
   private
