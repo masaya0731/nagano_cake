@@ -7,7 +7,6 @@ class Admin::CustomersController < ApplicationController
   def show
     # 会員詳細の表示
     @customer = Customer.find(params[:id])
-    @order = Order.find_by(id: @customer.id)
   end
 
   def edit
