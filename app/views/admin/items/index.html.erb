@@ -27,7 +27,7 @@
                   <%= item.name %>
                 <% end %>
               </td>
-              <td><%= item.price_without_tax %></td>
+              <td><%= item.price_without_tax.to_s(:delimited) %></td>
               <td><%= item.genre.name %></td>
               <td>
                 <% if item.is_sold == true %>

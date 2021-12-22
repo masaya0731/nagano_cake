@@ -1,4 +1,6 @@
 class Admin::CustomersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     # kaminariを使用した記述
     @customers = Customer.page(params[:page])
@@ -7,6 +9,12 @@ class Admin::CustomersController < ApplicationController
   def show
     # 会員詳細の表示
     @customer = Customer.find(params[:id])
+  end
+
+  def show_orders
+    @customer = Customer.find(params[:customer_id])
+    @order = Order.find_by(id: @customer.id)
+    @orders = @customer.orders.page(params[:page]).reverse_order
   end
 
   def edit
