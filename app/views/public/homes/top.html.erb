@@ -1,3 +1,5 @@
+<!-- トップページ -->
+<!-- 最初のロゴを表示させるための記述 -->
 <div id="splash">
   <div id="splash_logo">
     <div class="fadeUp" style="font-family: cursive; font-size: 50px;">Welcome to</div>
@@ -11,9 +13,15 @@
     $("#splash_logo").delay(300).fadeOut('slow');
   });
 </script>
+<!-- ここまで -->
 <div class="container">
-  <div class="flash_message"><%= flash[:notice] %></div>
+  <!--　背景の泡の表示のファイルの読み込み以下２行 -->
+  <script src="bubbly-bg.js"></script>
+　<script>bubbly();</script>
+  <div class="flash_message text-center text-primary"><%= flash[:notice] %></div>
+  <div class="flash_message text-center text-danger"><%= flash[:danger] %></div>
   <div class="row">
+    <!-- 管理者側でジャンルを追加するとここに表示される -->
     <div class="col-2 mt-5">
       <div class="list-group">
         <sapn class="list-group-item">ジャンル検索</sapn>
@@ -39,21 +47,25 @@
           </div>
         </div>
       </div>
+      <!--　管理者側で商品の新規登録をすると表示される -->
       <h4 class="mt-3 ml-3 ribbon1"><strong>新着商品</strong></h4>
-      <div style="display: flex;">
+      <div class="col-" style="display: flex;">
         <% @items.each do |item| %>
-          <div class="mt-3">
+          <div class="mt-3 mr-5">
             <%= link_to public_item_path(item) do %>
-              <%= attachment_image_tag(item, :image, size: "200x200", fallback: "no_image.jpg") %><br>
+              <div><%= attachment_image_tag(item, :image, size: "200x200", fallback: "no_image.jpg", class: "top-items") %><br></div>
             <% end %>
-            <%= item.name %><br>
-            <%= item.price_without_tax %>円
+            <div class="text-center" style="font-size: 18px;">
+              <%= item.name %><br>
+              <%= item.price_without_tax %>円
+            </div>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<!-- 商品一覧画面へ -->
 <div class="h5 text-right mr-5 items-all-text btn_design">
   <strong class="button-text"><%= link_to "全ての商品を見る＞", public_items_path, class: "text-white" %></strong>
 </div>
