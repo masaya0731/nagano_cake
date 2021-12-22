@@ -31,8 +31,19 @@
           address: 住所
           tel: 電話番号
           email: メールアドレス
+          password: パスワード
 
         delivery_address:
           post_code: 郵便番号
           address: 住所
           name: 宛名
+
+        item:
+          genre: ジャンル
+          image: 商品画像
+          price_without_tax: 税抜価格
+          introduction: 商品説明
+          name:  商品名
+
+        genre:
+          name: ジャンル名

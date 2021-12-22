@@ -1,12 +1,15 @@
+<!--　ジャンル一覧、ジャンルの新規追加画面 -->
 <div class='container'>
+  <div class="text-success"><strong style="font-size: 20px;"><%= flash[:success] %></strong></div>
   <div class="row">
     <div class="col-11">
       <h4 class="offset-1 my-5">ジャンル一覧・追加</h4>
       <%= form_with model: @genre, url: '/admin/genres', local: true do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
         <div class="field row form-group">
           <%= f.label :"ジャンル名", class: "col-3" %>
           <%= f.text_field :name, autofocus: true, placeholder:"ジャンル名", class: "col-4 form-control" %>
-          <%= f.submit '新規登録', class: "btn btn-success offset-1" %>
+          <%= f.submit '新規登録', class: "btn btn-success btn100 offset-1" %>
         </div>
       <% end %>
     </div>
@@ -26,7 +29,7 @@
               <td><%= genre.name %></td>
               <td></td>
               <td></td>
-              <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-success' %></td>
+              <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: 'btn btn-success btn100' %></td>
             </tr>
           <% end %>
           <tr>

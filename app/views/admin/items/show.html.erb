@@ -1,4 +1,6 @@
+<!--　商品詳細画面 -->
 <div class="container">
+  <div class="text-success"><strong style="font-size: 20px;"><%= flash[:success] %></strong></div>
   <div class="row">
     <div class="offset-1 col-11 mt-5 h4">商品詳細</div>
   </div>
@@ -34,7 +36,7 @@
         </tr>
       </table>
       <div class="row pl-4">
-        <td><%= link_to '編集する', edit_admin_item_path(@item), class: "btn btn-success center-block" %>
+        <td><%= link_to '編集する', edit_admin_item_path(@item), class: "btn btn-success btn100 center-block" %>
       </div>
     </div>
   </div>
