@@ -12,7 +12,7 @@ class Admin::OrderDetailsController < ApplicationController
         flash[:success] = "製作ステータスの更新が成功しました！"
       else
         render admin_order_path
-        flash.now[:danger] = "注文ステータス更新失敗しました.."
+        flash.now[:danger] = "製作ステータス更新失敗しました.."
       end
   end
 

@@ -35,7 +35,6 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <%= form_with model: @order_details, url: admin_order_detail_path, method: :patch, local: true do |f| %>
         <table class="table">
           <thead class="table-secondary">
             <tr>
@@ -54,17 +53,20 @@
                 <td><%= order_detail.item.with_tax_price %></td>
                 <td><%= order_detail.count %></td>
                 <td><%= order_detail.subtotal_price %></td>
-                 <%= f.hidden_field :id, value: order_detail.id %>
-                <td><%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}%></td>
-                <td><%= f.submit "更新" , class: "btn btn-success" %></td>
+                <td>
+                  <%= form_with model: order_detail, url: admin_order_detail_path, method: :patch, local: true do |f| %>
+                    <%= f.hidden_field :id, value: order_detail.id %>
+                    <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}%>
+                    <%= f.submit "更新" , class: "btn btn-success ml-5" %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>
         </table>
-      <% end %>
     </div>
-    <div class="col-md-4 pt-3 align-self-end　border border-ridge text-center gradient">
-      <table class="table table-borderless">
+    <div class="col-md-4 pt-3 align-self-end">
+      <table class="table table-borderless text-center gradient">
         <tbody>
           <tr>
             <th>合計金額</th>
