@@ -16,7 +16,7 @@ class Public::DeliveryAddressesController < ApplicationController
     @delivery_address = DeliveryAddress.new(delivery_address_params)
     @delivery_address.customer_id = current_customer.id
     if @delivery_address.save
-      flash[:notice] = "新規配送先を登録しました。"
+      flash[:primary] = "新規配送先を登録しました。"
       redirect_to public_delivery_addresses_path
     else
       @delivery_addresses = current_customer.delivery_addresses
@@ -28,7 +28,7 @@ class Public::DeliveryAddressesController < ApplicationController
   def update
     @delivery_address = DeliveryAddress.find(params[:id])
     if @delivery_address.update(delivery_address_params)
-      flash[:notice] = "配送先情報を更新しました。"
+      flash[:success] = "配送先情報を更新しました。"
       redirect_to public_delivery_addresses_path
     else
       render :edit
@@ -39,7 +39,7 @@ class Public::DeliveryAddressesController < ApplicationController
   def destroy
     @delivery_address = DeliveryAddress.find(params[:id])
     @delivery_address.destroy
-    flash[:notice] = "選択した配送先の消去が完了しました。"
+    flash[:danger] = "選択した配送先の消去が完了しました。"
     redirect_to public_delivery_addresses_path
   end
 
