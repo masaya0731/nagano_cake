@@ -1,8 +1,12 @@
 <div class="container mt-3">
   <div class="row mt-3">
     <div class="mx-auto col-11">
-      <h3 class="my-2 py-2 mb-5 d-inline-block border-bottom border-dark text-center" style="font-weight: 600; width: 100%;">注文情報確認</h3>
+      <h3 class="my-2 py-2 d-inline-block border-bottom border-dark text-center" style="font-weight: 600; width: 100%;">注文情報確認</h3>
     </div>
+  </div>
+    <!--注文ステップ-->
+    <%= render 'public/cart_items/order_process' %>
+  <div class="row mt-3">
     <table class="table table-bordered table-hover col-8">
       <thead>
         <th class="info border border-dark table-active">商品</th>

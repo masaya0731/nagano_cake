@@ -1,3 +1,13 @@
 // Place all the styles related to the public/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card-scale_animation{
+  transition: 0.5s;
+}
+
+.card-scale_animation:hover{
+  transform: scale(1.12);
+  transition: 0.5s;
+  z-index: 1;
+}
