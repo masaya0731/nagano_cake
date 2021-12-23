@@ -25,8 +25,10 @@
             <td><%= @order.payment_method_i18n %></td>
           </tr>
             <th>注文ステータス</th>
-            <td><%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]}%>
-            <span class= "pl-5"><%= f.submit "更新" , class: "btn btn-success" %></span></td>
+            <td><%= f.select :order_status, Order.order_statuses.keys %>
+              <span class= "pl-5"><%= f.submit '更新'  ,class: "btn btn-success" %></span>
+            </td>
+
         </table>
       <% end %>
        <div class="text-right text-success"><%= flash[:success] %></div>
@@ -56,7 +58,7 @@
                 <td>
                   <%= form_with model: order_detail, url: admin_order_detail_path, method: :patch, local: true do |f| %>
                     <%= f.hidden_field :id, value: order_detail.id %>
-                    <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}%>
+                    <%= f.select :making_status, OrderDetail.making_statuses.keys %>
                     <%= f.submit "更新" , class: "btn btn-success ml-5" %>
                   <% end %>
                 </td>
