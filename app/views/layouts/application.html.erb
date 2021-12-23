@@ -10,6 +10,43 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <%= link_to root_path, class:"navbar-brand text-dark" do %>
+            <h2 style="font-family: cursive;"><span>NaganoCake</span></h2>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <div class="mt-1 mr-5"><b>ようこそ、<%= current_customer.last_name %>さん！</b></div>
+                <li><%= link_to 'マイページ', public_customer_path(current_customer.id), class:"fas fa-home nav-link text-light font-weight-bold text-dark rounded mr-3 mb-1"%></li>
+                <li><%= link_to "商品一覧", public_items_path, class:"fas fa-birthday-cake nav-link text-light font-weight-bold text-dark rounded mr-3 mb-1" %></li>
+                <li><%= link_to 'カート一覧', public_cart_items_path, class:"far fa-shopping-cart nav-link text-light font-weight-bold text-dark rounded mr-3 mb-1" %></li>
+                <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-light　font-weight-bold text-dark rounded mb-1" %></li>
+              <% elsif admin_signed_in?%>
+                <li><%= link_to "商品一覧", admin_items_path, class: "nav-link fas fa-birthday-cake text-dark rounded mr-3 mb-1" %></li>
+                <li><%= link_to "会員一覧", admin_customers_path, class: "nav-link fas fa-users text-dark text-dark rounded mr-3 mb-1" %></li>
+                <li><%= link_to "注文履歴一覧", admin_root_path, class: "nav-link fas fa-file-signature text-dark rounded mr-3 mb-1" %></li>
+                <li><%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link fas fa-cheese text-dark rounded mr-3 mb-1" %></li>
+                <li ><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link fas fa-sign-out-alt text-dark rounded mb-1" %></li>
+              <% else %>
+                <li><%= link_to 'About', about_path, class:"fas fa-store nav-link text-light font-weight-bold text-dark rounded mr-3 mb-1" %></li>
+                <li><%= link_to "商品一覧", public_items_path, class:"fas fa-birthday-cake nav-link text-light font-weight-bold text-dark rounded mr-3 mb-1" %></li>
+                <li><%= link_to "新規登録", new_customer_registration_path, class:"fas fa-user-plus nav-link text-light font-weight-bold text-dark rounded mr-3 mb-1" %></li>
+                <li><%= link_to "ログイン", new_customer_session_path, class:"fas fa-sign-in-alt nav-link text-light font-weight-bold text-dark rounded mb-1" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
+    <footer>
+      <div class="mt-5" style="border-top: 1px solid black; text-align: center; font-size: 25px; font-family: cursive;">NaganoCake</div>
+  　</footer>
   </body>
 </html>

@@ -1,0 +1,100 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "mx-auto col-11">
+      <h3 class = "my-2 py-2 d-inline-block border-bottom border-dark text-center" style = 'font-weight: 600; width: 100%;' >ショッピングカート</h3>
+    </div>
+  </div>
+  <!--注文ステップ-->
+  <%= render 'public/cart_items/order_process' %>
+  <!--カートを空にするボタン-->
+  <div class = "row">
+    <div class = "col-6 offset-6 mb-2">
+      <% if @my_cart_items.blank? %>
+        <!--何も表示しない-->
+      <% else %>
+        <%= link_to public_destroy_cart_items_path, method: :delete, data: {confirm: "カートを全て空にしますか？"} do %>
+          <button type="button" class="btn btn-danger float-right">カートを空にする</button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <!--カートについてのフラッシュメッセージ-->
+  <div class = "flash_message">
+    <!--sucessはカートの中身変更や削除をしたときのメッセージ-->
+    <p class ="text-success"><%= flash[:success] %></p>
+    <!--dangerはカートに何も入れずに注文情報入力以降の画面に進もうとしたら出る、カートに同じ商品を20個以上入れようとしたらメッセージ-->
+    <!--controllers/public/orders_controller.rb にリダイレクトと表示させるメソッドがある-->
+    <p class ="text-danger"><%= flash[:danger] %></p>
+  </div>
+  <!--カート一覧表-->
+  <% if @my_cart_items.blank? %>
+    <div class = "mx-auto row">
+      <p class = "text-center">カートには何も入っていません</p>
+    </div>
+  <% else %>
+    <div class = "mx-auto row">
+      <table class = "table table-bordered">
+        <thead>
+          <tr class="table-active">
+            <th class = "border border-dark">商品名</th>
+            <th class = "border border-dark">単価（税込）</th>
+            <th class = "border border-dark">数量</th>
+            <th class = "border border-dark">小計</th>
+            <th class = "border border-dark"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @my_cart_items.each do |cart_item| %>
+            <tr>
+              <td class="align-middle border border-dark">
+                  <%= attachment_image_tag cart_item.item, :image, :fill, 50, 50, resize:"50×50", :size => '50×50' %>
+                  <%= link_to cart_item.item.name, public_item_path(cart_item.item_id), class: "text-dark" %>
+              </td>
+              <td class="align-middle border border-dark">
+                <%= "￥#{cart_item.item.with_tax_price.to_s(:delimited)}" %>
+              </td>
+              <td class="align-middle  border border-dark">
+                <%= form_with model: cart_item, url: public_cart_item_path(cart_item) do |f| %>
+                  <%= f.select :count, *[1..20] %>
+                  <%= f.submit '変更', class: "btn btn-success" %>
+                <% end %>
+              </td>
+              <td class="align-middle  border border-dark">
+                <%= "￥#{cart_item.subtotal_price.to_s(:delimited)}" %>
+              </td>
+              <td class="align-middle  border border-dark">
+                <%= link_to public_cart_item_path(cart_item), method: :delete, data: {confirm: "カートから削除しますか？"} do %>
+                  <button type="button" class="btn btn-danger">削除する</button>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <!--買い物を続けるボタン　と　合計金額-->
+    <div class = "mx-auto row">
+      <div class = "mx-auto col-8">
+        <%= link_to root_path do %>
+          <button type="button" class="btn btn-info btn-lg">買い物を続ける</button>
+        <% end %>
+      </div>
+      <div class = "mx-auto col-4">
+        <table class = "table table-bordered">
+          <tr style = "border: double;">
+            <th class="table-active border border-dark">合計金額</th>
+            <th class = "border border-dark">￥<%= @my_cart_items.inject(0){|sum, cart| sum + cart.subtotal_price}.to_s(:delimited) %></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!--情報入力画面ボタン-->
+    <div class = "mx-auto row">
+      <div class = "mx-auto col-6 text-center">
+        <%= link_to new_public_order_path do %>
+          <button type="button" class="btn btn-success btn-lg">情報入力画面に進む</button>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+</div>

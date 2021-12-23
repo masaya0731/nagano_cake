@@ -1,0 +1,81 @@
+<!-- アバウトページ -->
+<div class="container">
+  <!--　背景の泡の表示のファイルの読み込み以下２行 -->
+  <script src="bubbly-bg.js"></script>
+　<script>bubbly();</script>
+  <div class="row">
+    <div class="mx-auto col-12 text-center" style="font-size: 90px;">About</div>
+    <div class="h5 blurTrigger TextTyping" style="width: 480px; display: inline-block; margin: 0 auto; text-align: center;">
+    　<span>な</span><span>が</span><span>の</span><span>C</span><span>A</span><span>K</span><span>E</span><span>は</span><span>全</span><span>国</span><span>発</span><span>送</span><span>可</span><span>能</span><span>な</span><span>ケ</span><span>ー</span><span>キ</span><span>屋</span><span>さ</span><span>ん</span><span>で</span><span>す</span><span>。</span><span>お</span><span>子</span><span>様</span><span>か</span><span>ら</span><span>お</span><span>年</span><span>寄</span><span>り</span><span>の</span><span>方</span><span>ま</span><span>で</span><span>お</span><span>召</span><span>し</span><span>上</span><span>が</span><span>り</span><span>い</span><span>た</span><span>だ</span><span>け</span><span>る</span><span>よ</span><span>う</span><span>、</span><span>様</span><span>々</span><span>な</span><span>バ</span><span>リ</span><span>エ</span><span>ー</span><span>シ</span><span>ョ</span><span>ン</span><span>を</span><span>ご</span><span>用</span><span>意</span><span>し</span><span>て</span><span>お</span><span>り</span><span>ま</span><span>す</span><span>。</span><span>ま</span><span>た</span><span>、</span><span>全</span><span>国</span><span>へ</span><span>発</span><span>送</span><span>可</span><span>能</span><span>で</span><span>す</span><span>の</span><span>で</span><span>「</span><span>い</span><span>つ</span><span>」</span><span>で</span><span>も</span><span>「</span><span>ど</span><span>こ</span><span>」</span><span>で</span><span>も</span><span>ご</span><span>注</span><span>文</span><span>い</span><span>た</span><span>だ</span><span>け</span><span>ま</span><span>す</span><span>ぜ</span><span>ひ</span><span>ご</span><span>注</span><span>文</span><span>く</span><span>だ</span><span>さ</span><span>い</span><span>。</span>
+    </div>
+    <!-- 一文字ずつ表示するための記述 -->
+    <script>
+        function TextTypingAnime() {
+        	$('.TextTyping').each(function () {
+        		var elemPos = $(this).offset().top - 50;
+        		var scroll = $(window).scrollTop();
+        		var windowHeight = $(window).height();
+        		var thisChild = "";
+        		if (scroll >= elemPos - windowHeight) {
+        			thisChild = $(this).children();
+        			thisChild.each(function (i) {
+        				var time = 100;
+        				$(this).delay(time * i).fadeIn(time);
+        			});
+        		} else {
+        			thisChild = $(this).children();
+        			thisChild.each(function () {
+        				$(this).stop();
+        				$(this).css("display", "none");
+        			});
+        		}
+        	});
+        }
+        $(window).scroll(function () {
+        	TextTypingAnime();
+        });
+        $(window).on('load', function () {
+        	var element = $(".TextTyping");
+        	element.each(function () {
+        		var text = $(this).html();
+        		var textbox = "";
+        		text.split('').forEach(function (t) {
+        			if (t !== " ") {
+        				textbox += '<span>' + t + '</span>';
+        			} else {
+        				textbox += t;
+        			}
+        		});
+        		$(this).html(textbox);
+        	});
+        		TextTypingAnime();
+        });
+      </script>
+      <!-- スライドショー -->
+      <div id="container">
+        <div id="theTarget">
+          <div class="about-image1 about-image"></div>
+          <div class="about-image2 about-image"></div>
+          <div class="about-image3 about-image"></div>
+          <div class="about-image4 about-image"></div>
+          <div class="about-image5 about-image"></div>
+        </div>
+      </div>
+      <script>
+        $(document).ready(function () {
+          $("#theTarget").skippr({
+            transition : 'fade',
+            speed : 1000,
+            easing : 'easeOutQuart',
+            navType : 'block',
+            childrenElementType : 'div',
+            autoPlay : true,
+            autoPlayDuration : 2700,
+            keyboardOnAlways : true,
+            hidePrevious : false
+          });
+        });
+      </script>
+    </div>
+  </div>
+</div>

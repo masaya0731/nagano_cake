@@ -1,0 +1,49 @@
+  # enumの記述
+  ja:
+    enums:
+      order:
+        payment_method:
+          credit_card: "クレジットカード"
+          transfer: "銀行振込"
+
+        order_status:
+          waiting_for_deposit: "入金待ち"
+          payment_confirmation: "入金確認"
+          in_production: "製作中"
+          preparing_for_delivery: "発送準備中"
+          delivered: "発送済み"
+
+      order_detail:
+        making_status:
+          cannot_be_started: "着手不可"
+          waiting_for_production: "製作待ち"
+          in_production: "製作中"
+          production_completed: "製作完了"
+
+    activerecord:
+      attributes:
+        customer:
+          last_name: 名前(姓)
+          first_name: 名前(名)
+          last_name_kana: フリガナ(姓)
+          first_name_kana: フリガナ(名)
+          post_code: 郵便番号
+          address: 住所
+          tel: 電話番号
+          email: メールアドレス
+          password: パスワード
+
+        delivery_address:
+          post_code: 郵便番号
+          address: 住所
+          name: 宛名
+
+        item:
+          genre: ジャンル
+          image: 商品画像
+          price_without_tax: 税抜価格
+          introduction: 商品説明
+          name:  商品名
+
+        genre:
+          name: ジャンル名

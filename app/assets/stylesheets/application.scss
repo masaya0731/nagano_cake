@@ -1,0 +1,322 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+//ログイン、新規登録画面
+.fluid {
+  width:40vh;
+  height: 40vh;
+  background: #fff100;
+  animation: fluidrotate 30s ease 0s infinite;
+}
+
+@keyframes fluidrotate {
+
+  0%, 100% {
+  border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+  }
+  14% {
+  border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+  }
+  28% {
+  border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+  }
+  42% {
+  border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+  }
+  56% {
+  border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+  }
+  70% {
+  border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+  }
+  84% {
+  border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  }
+
+}
+
+.fluid2 {
+  width:40vh;
+  height: 40vh;
+  background: palegreen;
+  animation: fluidrotate 30s ease 0s infinite;
+}
+@keyframes fluidrotate {
+  0%, 100% {
+  border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+  }
+  14% {
+  border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+  }
+  28% {
+  border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+  }
+  42% {
+  border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+  }
+  56% {
+  border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+  }
+  70% {
+  border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+  }
+  84% {
+  border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  }
+
+}
+
+.fluid3 {
+  width:40vh;
+  height: 40vh;
+  background: #afeeee;
+  animation: fluidrotate 30s ease 0s infinite;
+}
+@keyframes fluidrotate {
+  0%, 100% {
+  border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+  }
+  14% {
+  border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+  }
+  28% {
+  border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+  }
+  42% {
+  border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+  }
+  56% {
+  border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+  }
+  70% {
+  border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+  }
+  84% {
+  border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  }
+
+}
+
+
+header {
+	width: 100%;
+	background:linear-gradient(45deg, white,white,pink);
+	background-size: 200% 200%;
+	animation: bggradient 30s ease infinite;
+}
+
+@keyframes bggradient{
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+//トップページ
+#splash {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background:#333;
+  text-align:center;
+  color:#fff;
+}
+
+#splash_logo {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fadeUp{
+  animation-name: fadeUpAnime;
+  animation-duration:0.5s;
+  animation-fill-mode:forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+  transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+.ribbon1 {
+  display: inline-block;
+  position: relative;
+  height: 50px;/*リボンの高さ*/
+  line-height: 50px;/*リボンの高さ*/
+  text-align: center;
+  padding: 0 50px;/*横の大きさ*/
+  font-size: 18px;/*文字の大きさ*/
+  background: #f57a78;/*塗りつぶし色*/
+  color: #fff;/*文字色*/
+  box-sizing: border-box;
+}
+
+.ribbon1:before, .ribbon1:after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.ribbon1:before {
+  top: 0;
+  left: 0;
+  border-width: 25px 0px 25px 15px;
+  border-color: transparent transparent transparent #fff;
+  border-style: solid;
+}
+
+.ribbon1:after {
+  top: 0;
+  right: 0;
+  border-width: 25px 15px 25px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+}
+
+.btn_design {
+    font-size: 20px;
+    width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px 15px;
+    background-color: #f57a78;
+    color: white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.btn_design:hover {
+    background-color:  #f57a78;
+    color:  #f57a78;
+    border: 2px solid  #f57a78;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+//アバウトページ
+.TextTyping span {
+	display: none;
+}
+
+.TextTyping::after {
+ 	content: "|";
+	animation: typinganime .8s ease infinite;
+}
+
+@keyframes typinganime{
+	from{opacity:0}
+	to{opacity:1}
+}
+
+
+  #container {
+    height: 500px;
+    width: 900px;
+    margin: 0 auto;
+  }
+
+  .about-image1 {
+    background-image: url(about-cake.jpg);
+  }
+  .about-image2 {
+    background-image: url(about-cake2.jpg);
+  }
+  .about-image3 {
+    background-image: url(about-cake3.jpg);
+  }
+  .about-image4 {
+    background-image: url(about-cake4.jpg);
+  }
+  .about-image5 {
+    background-image: url(about-cake5.jpg);
+  }
+
+//ヘッダー
+.navbar-nav li a{
+	position: relative;
+}
+
+.navbar-nav li.current a,
+.navbar-nav li a:hover{
+	color:#0481A2;
+}
+
+.navbar-nav li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background:black;
+    transition: all .3s;
+    transform: scale(0, 1);
+    transform-origin: center top;
+}
+
+.navbar-nav li.current a::after,
+.navbar-nav li :hover::after {
+    transform: scale(1, 1);
+}
+
+// ジャンル検索窓--------------------------------
+// ドット斜め
+.bg_skew_dot{
+  background-color: #ffdbed;
+  background-image:
+    radial-gradient(#fff 25%, transparent 20%),
+    radial-gradient(#fff 25%, transparent 20%);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+
+
+// 商品詳細画面--------------------------------
+// 縦ボーダー背景
+.bg_border{
+  background-color: #ffdbed;
+  background-image:
+   linear-gradient(-90deg, #ffeddb 50%, transparent 50%);
+  background-size: 34px 14px;
+}

@@ -1,0 +1,77 @@
+
+<div class="container">
+    <div class = "flash_message text-center text-danger"><%= flash[:danger] %></div>
+    <div class="row">
+      <div class="mx-auto col-11">
+        <h3 class="my-2 py-2 d-inline-block border-bottom border-dark text-center" style="font-weight: 600; width: 100%;">注文情報入力</h3>
+      </div>
+    </div>
+    <!--注文ステップ-->
+    <%= render 'public/cart_items/order_process' %>
+    <div class="col-md-12 offset-md-1">
+      <div class="row mt-4">
+        <h4><b>お支払い方法</b></h4>
+      </div>
+      <%= form_with model: @order, url: public_orders_check_path, local: true do |f| %>
+        <div>
+          <!-- クレジットか銀行振込を選ぶ -->
+          <label><%= f.radio_button :payment_method, "credit_card", checked: true %>クレジットカード</label>
+        </div>
+        <div>
+          <label><%= f.radio_button :payment_method, "transfer" %>銀行振込</label>
+        </div>
+        <div class="row">
+          <h4><b>お届け先</b></h4>
+        </div>
+
+        <div>
+          <!-- 配送先の選択を0~2から選ぶ -->
+          <!-- ご自身の住所を選択した場合 = 0 -->
+          <div>
+            <%= f.radio_button :address_number, 0, checked: true %>
+            <%= f.label :address_number_0, "ご自身の住所" %><br>
+          </div>
+          <div style="margin-left: 17px;">
+            〒<%= @customer.post_code %> <%= @customer.address %><br>
+            <%= @customer.full_name %>
+          </div>
+        </div>
+
+        <div>
+          <!-- 登録した住所を選択した場合 = 1 -->
+          <%= f.radio_button :address_number, 1 %>
+          <%= f.label :address_number_1, "登録済み住所から選択" %><br>
+          <div style="margin-left: 17px;">
+            <%= f.collection_select(:address_id, @delivery_addresses, :id, :full_address) %>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <!-- 新しいお届け先を選択した場合 = 2 -->
+            <%= f.radio_button :address_number, 2 %>
+            <%= f.label :address_number_2, "新しいお届け先" %>
+          </div>
+          <!-- 新規配送先を登録する場合 -->
+          <div>
+            <div class="field" style="margin-left: 17px;">
+              <%= f.label :post_code, "郵便番号(ハイフン無し)" %><br>
+              <%= f.text_field :post_code, :placeholder => "0000000" %>
+            </div>
+            <div class="field" style="margin-left: 17px;">
+              <%= f.label :address, "住所" %><br>
+              <%= f.text_area :address, :placeholder => "東京都渋谷区代々木神園町0-0", style:"width:50%; height:40px;" %>
+            </div>
+            <div class="field" style="margin-left: 17px;">
+              <%= f.label :name, "宛名" %><br>
+              <%= f.text_field :full_name, :placeholder => "令和道子" %>
+            </div>
+            <div class="col-md-10 offset-md-4">
+              <!-- 注文詳細画面へ進む -->
+              <%= f.submit "確認画面に進む", class:"btn btn-outline-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>

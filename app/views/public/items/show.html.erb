@@ -1,0 +1,50 @@
+<div class = "container">
+  <div class = "mx-auto  row  pt-3">
+    <!--ジャンル検索欄-->
+    <div class="col-2">
+      <%= render 'public/items/genre_search_table', genres: @genres %>
+    </div>
+    <!--商品詳細-->
+    <div class = "col-10">
+      <!--線装飾-->
+      <div class = "mx-auto bg_border w-100 mb-3 border" style = "height:8px;"></div>
+      <!--写真と商品情報-->
+      <% if !(@item.blank?) %>
+        <div class = "row">
+          <div class = "col-7">
+            <%= attachment_image_tag @item, :image, :fill, 450, 450, resize:"450×450", class:"show-img w-100" %>
+          </div>
+          <div class = "col-5">
+            <h4><%= @item.name %></h4>
+            <p class = "mb-4"><%= @item.introduction %></p>
+            <% if @item.is_sold == true %>
+                <p class = "h6 d-inline-block bg-info text-light px-3 py-1 border border-dark rounded-pill font-weight-bold">販売中</p>
+              <% else %>
+                <p class = "h6 d-inline-block bg-danger text-light px-3 py-1 border border-dark rounded-pill font-weight-bold">販売停止中</p>
+            <% end %>
+            <p class = "h4"><%= "￥#{@item.with_tax_price.to_s(:delimited)}（税込）" %> </p>
+            <!--カードに追加フォーム（販売中かつログインしなければ表示されない）-->
+            <% if (customer_signed_in?) && (@item.is_sold == true)%>
+              <div class = "mt-4">
+                <!--カート追加についてのフラッシュメッセージ-->
+                <div class = "flash_message">
+                  <!--個数を入れずにカート追加した場合に出る-->
+                  <p class ="text-danger"><%= flash[:danger] %></p>
+                </div>
+                <%= form_with model: @new_cart_item, url:public_cart_items_path do |f| %>
+                  <%= f.hidden_field :item_id, value: @item.id %>
+                  <%= f.select :count, *[1..20], include_blank: "個数選択" %>
+                  <%= f.submit 'カートに入れる', class: "btn btn-success ml-4" %>
+                <% end %>
+                <p class = "mt-2 mb-1">注意</p>
+                <p style = "font-size: 14px">同じ商品はカートに20個まで入れられます。</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <!--線装飾-->
+      <div class = "mx-auto bg_border w-100 mt-3 border" style = "height:8px;"></div>
+    </div>
+  </div>
+</div>

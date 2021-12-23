@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row pt-3">
+      <div  class="col-md-5 offset-1 table-secondary text-center my-2">
+        <h4 class="d-inline-flex pt-2 bd-highlight"><%= @customer.full_name %>さんの注文履歴一覧</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 mx-auto">
+        <table class="table">
+          <thead class="table-secondary">
+            <tr>
+              <th class="col-1"></th>
+              <th>購入日時</th>
+              <th>注文個数</th>
+              <th>注文ステータス</th>
+            </tr>
+      　　  </thead>
+       　  <tbody>
+            <% @orders.each do |order| %>
+              <tr>
+                <td></td>
+                <td class="text-decoration-underline" >
+                <!--注文日（年/月/日/時/分/秒)-->
+                  <u><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order.id), class: "text-dark"%></u>
+                </td>
+                <!--オーダーの合計-->
+                <td><%= order.order_details.inject(0) { |sum, order_detail| sum + order_detail.count } %></td>
+                <!--注文ステータス日本語化-->
+                <td><%= order.order_status_i18n %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--paginationの記述-->
+   <div class="d-flex justify-content-center"><%= paginate @orders %></div>
+</div>
