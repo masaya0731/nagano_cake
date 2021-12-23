@@ -8,6 +8,7 @@
     <div class = "col-10">
       <!--線装飾-->
       <div class = "mx-auto bg_border w-100 mb-3 border" style = "height:8px;"></div>
+      <!--写真と商品情報-->
       <% if !(@item.blank?) %>
         <div class = "row">
           <div class = "col-7">
@@ -25,6 +26,11 @@
             <!--カードに追加フォーム（販売中かつログインしなければ表示されない）-->
             <% if (customer_signed_in?) && (@item.is_sold == true)%>
               <div class = "mt-4">
+                <!--カート追加についてのフラッシュメッセージ-->
+                <div class = "flash_message">
+                  <!--個数を入れずにカート追加した場合に出る-->
+                  <p class ="text-danger"><%= flash[:danger] %></p>
+                </div>
                 <%= form_with model: @new_cart_item, url:public_cart_items_path do |f| %>
                   <%= f.hidden_field :item_id, value: @item.id %>
                   <%= f.select :count, *[1..20], include_blank: "個数選択" %>

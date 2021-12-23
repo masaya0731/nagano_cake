@@ -5,7 +5,7 @@
       <ul class="mx-auto text-center arrow">
         <!--「カートに入れる」は水色+リンク付き-->
         <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to public_cart_items_path, class: "font-weight-bold text-light" do %>
+          <%= link_to public_cart_items_path, class: "font-weight-bold text-light", style: "text-decoration: underline" do %>
             <i class="fas fa-shopping-cart"></i> カートに入れる
           <% end %>
         </li>
@@ -31,13 +31,13 @@
       <ul class="mx-auto text-center arrow">
         <!--「カートに入れる」は水色+リンク付き-->
         <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to public_cart_items_path, class: "font-weight-bold text-light" do %>
+          <%= link_to public_cart_items_path, class: "font-weight-bold text-light", style: "text-decoration: underline" do %>
             <i class="fas fa-shopping-cart"></i> カートに入れる
           <% end %>
         </li>
         <!--「注文情報の入力」は水色+リンク付き-->
         <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to new_public_order_path, class: "font-weight-bold text-light" do %>
+          <%= link_to new_public_order_path, class: "font-weight-bold text-light", style: "text-decoration: underline" do %>
             注文情報の入力
           <% end %>
         </li>
@@ -59,21 +59,19 @@
        <ul class="mx-auto text-center arrow">
         <!--「カートに入れる」は水色+リンク付き-->
         <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to public_cart_items_path, class: "font-weight-bold text-light" do %>
+          <%= link_to public_cart_items_path, class: "font-weight-bold text-light", style: "text-decoration: underline" do %>
             <i class="fas fa-shopping-cart"></i> カートに入れる
           <% end %>
         </li>
         <!--「注文情報の入力」は水色+リンク付き-->
         <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to new_public_order_path, class: "font-weight-bold text-light" do %>
+          <%= link_to new_public_order_path, class: "font-weight-bold text-light", style: "text-decoration: underline" do %>
             注文情報の入力
           <% end %>
         </li>
-        <!--「注文情報の確認」は水色+リンク付き-->
-        <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to public_orders_check_path, class: "font-weight-bold text-light" do %>
-            注文情報の確認
-          <% end %>
+        <!--「注文情報の確認」は水色-->
+        <li class = "bg-info border border-dark border-5 rounded-3 font-weight-bold text-light">
+          注文情報の確認
         </li>
         <!--「注文完了！」は灰色-->
         <li class = "bg-secondary border border-dark border-5 rounded-3 font-weight-bold text-light">
@@ -89,21 +87,19 @@
        <ul class="mx-auto text-center arrow">
         <!--「カートに入れる」は水色+リンク付き-->
         <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to public_cart_items_path, class: "font-weight-bold text-light" do %>
+          <%= link_to public_cart_items_path, class: "font-weight-bold text-light", style: "text-decoration: underline" do %>
             <i class="fas fa-shopping-cart"></i> カートに入れる
           <% end %>
         </li>
         <!--「注文情報の入力」は水色+リンク付き-->
         <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to new_public_order_path, class: "font-weight-bold text-light" do %>
+          <%= link_to new_public_order_path, class: "font-weight-bold text-light", style: "text-decoration: underline" do %>
             注文情報の入力
           <% end %>
         </li>
-        <!--「注文情報の確認」は水色+リンク付き-->
-        <li class = "bg-info border border-dark border-5 rounded-3">
-          <%= link_to public_orders_check_path, class: "font-weight-bold text-light" do %>
+        <!--「注文情報の確認」は水色-->
+        <li class = "bg-info border border-dark border-5 rounded-3 font-weight-bold text-light">
             注文情報の確認
-          <% end %>
         </li>
         <!--「注文完了！」は水色-->
           <li class = "bg-info border border-dark border-5 rounded-3 font-weight-bold text-light">
